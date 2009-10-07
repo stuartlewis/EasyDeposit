@@ -1,0 +1,12 @@
+#
+# An example .htaccess file.
+#
+# To use this, edit the RewriteBase setting to match the root of your web application
+# E.g. if yyou have installed the application at http://example.com/deposit/ then 
+# use: 'RewriteBase /deposit' and rename this file to .htaccess
+#
+RewriteEngine On
+RewriteBase /sword
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]

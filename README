@@ -1,0 +1,56 @@
+Welcome to the EasyDeposit PHP client!
+--------------------------------------
+Version: 0.1
+
+The EasyDeposit client is a PHP powered configurable SWORD repository deposit
+client. The client can be easily configured to allow you to create a custom
+deposit interface for your repository. 'Steps' can be added or removed from
+the client to tailor it to your own requirements, new custom steps can be
+easily created, and the look and feel of the client can be easily changed
+by editing the CSS and header and footer files.
+
+The client was originally written by Stuart Lewis (stuart@stuartlewis.com) at
+the University of Auckland Library.
+
+
+Licence
+-------
+The library is licenced with a BSD licence. See the file LICENCE in the
+distribution directory.
+
+The software is based on the CodeIgniter platform:
+
+  - Please read codeigniter-license.txt for terms of use.
+
+Also included with this distribution is a copy of mootools:
+
+  - Please read mootools-licence.txt for terms of use.
+
+
+SWORD Compatibility
+-------------------
+This version of the library is compatible with SWORD version 1.3
+
+
+Prerequisites
+-------------
+This library requires:
+
+ - PHP version 5
+    + CURL extension
+    + SimpleXML extension
+    + ZIP extension
+    + LDAP module (only if you wish to use LDAP authentication)
+
+
+Documentation
+-------------
+View documentation, including installation instructions at:
+
+ - http://wiki.github.com/stuartlewis/EasyDeposit
+
+
+Changes
+-------
+0.1 (7th October 2009)
+  - First release
