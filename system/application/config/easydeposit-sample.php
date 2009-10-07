@@ -3,7 +3,7 @@
     // Configuration file for the EasyDeposit application
 
     // Location of the SWORD PHP library
-    $config['easydeposit_librarylocation'] = 'system/libraries/swordapp-php-library';
+    $config['easydeposit_librarylocation'] = '/sword/swordapp-php-library';
 
     // The steps that a submission should take
     // The first of these should be a login step that has public static methods _loggedin and _id
