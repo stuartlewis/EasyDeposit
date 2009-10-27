@@ -28,13 +28,14 @@ class ServiceDocumentLogin extends EasyDeposit
      */
     function index()
     {
-        // Add the servicedocument URL to the POST array
-        $_POST['url'] = $this->config->item('easydeposit_servicedocumentlogin_url');        
+        // Add the servicedocument URL to the POST array, and add an empty obo
+        $_POST['url'] = $this->config->item('easydeposit_servicedocumentlogin_url');
+        $_POST['obo'] = '';
 
         // Try to validate the user
         $this->form_validation->set_rules('username', 'Username', 'xss_clean|callback__clean|required');
         $this->form_validation->set_rules('password', 'Password', 'xss_clean|callback__clean|required|callback__getservicedocument');
-        if ($this->form_validation->run() == FALSE)
+        if (((!isset($_POST['username'])) && (!isset($_POST['password']))) || ($this->form_validation->run() == FALSE))
         {
             // Set the page data
             $data['page_title'] = 'Login';

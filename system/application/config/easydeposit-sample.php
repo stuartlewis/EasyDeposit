@@ -24,6 +24,9 @@
     $config['easydeposit_ldaplogin_server'] = 'ldaps://ldap.example.com';
     $config['easydeposit_ldaplogin_context'] = 'OU=users,DC=example,DC=com';
 
+    // ServiceDocument Login settings
+    $config['easydeposit_servicedocumentlogin_url'] = 'http://example.com/sword/servicedocument';
+
     // A list of service documents to provide in the selectrepository step
     $config['easydeposit_selectrepository_list'] = array(
                   'http://localhost:8080/sword/servicedocument',
