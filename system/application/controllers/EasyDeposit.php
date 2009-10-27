@@ -92,6 +92,14 @@ class EasyDeposit extends Controller {
             $loginclass = ucfirst($this->easydeposit_steps[0]);
             $this->userid = call_user_func(array($loginclass, '_id'));
         }
+        else
+        {
+            // Check the user isn't tryig to use an invalid authentication step
+            if (strtolower(get_class($this)) != $this->easydeposit_steps[0])
+            {
+                redirect('/' . $this->easydeposit_steps[0]);
+            }        
+        }
 
         // Load some more helpers
         $this->load->library('form_validation');
