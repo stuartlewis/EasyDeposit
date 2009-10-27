@@ -2,7 +2,7 @@
 
     // Configuration file for the EasyDeposit application
 
-    // Location of the SWORD PHP library
+    // Location of the SWORD PHP library (this normally doesn't need to be changed)
     $config['easydeposit_librarylocation'] = '/sword/swordapp-php-library';
 
     // The steps that a submission should take
