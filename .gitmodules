@@ -1,0 +1,3 @@
+[submodule "system/libraries/swordapp-php-library"]
+	path = system/libraries/swordapp-php-library
+	url = git://github.com/stuartlewis/swordapp-php-library.git
