@@ -17,7 +17,7 @@ class LDAPLogin extends EasyDeposit
         EasyDeposit::_authN();
 
         // Initalise the parent
-        parent::EsyDeposit();
+        parent::EasyDeposit();
     }
 
     /**
