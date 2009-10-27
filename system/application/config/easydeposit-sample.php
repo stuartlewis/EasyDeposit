@@ -36,6 +36,12 @@
                   'http://sword.intralibrary.com/IntraLibrary-Deposit/',
                   'http://fedora.swordapp.org/sword-fedora/servicedocument');
 
+    // Credentials with which to retrieve a service document automatically
+    $config['easydeposit_retrieveservicedocument_url'] = 'http://example.com/sword/servicedocument';
+    $config['easydeposit_retrieveservicedocument_username'] = 'email@example.com';
+    $config['easydeposit_retrieveservicedocument_password'] = 'password';
+    $config['easydeposit_retrieveservicedocument_obo'] = '';
+
     // Item types
     $config['easydeposit_metadata_itemtypes'] = array(
                   'http://purl.org/eprint/type/JournalArticle' => 'Journal article',
