@@ -1,6 +1,7 @@
 <?php $this->load->helper('url'); ?>
 <html>
 	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<base href="<?php echo base_url() ?>">
 		<title><?php echo $page_title; ?></title>
 		<link rel='stylesheet' type='text/css' media='all' href='css/style.css' />
