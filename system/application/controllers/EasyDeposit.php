@@ -21,13 +21,13 @@ class EasyDeposit extends Controller {
     // Whether this step is an authentication step
     var $authN = false;
 
-	/**
-	 * Constructor
-	 *
-	 */
-	function EasyDeposit()
-	{	
-		// Initalise the parent
+    /**
+     * Constructor
+     *
+     */
+    function EasyDeposit()
+    {
+        // Initalise the parent
         parent::Controller();
             
         // Load the SWORD config
