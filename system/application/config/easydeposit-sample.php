@@ -84,4 +84,9 @@
     $config['easydeposit_email_subject'] = 'Thank you for your deposit';
     $config['easydeposit_email_end'] = "Best wishes,\n\nThe repository team\nsupport@example.com";
 
+    // CrossRef API DOI lookup configuration
+    // Register for a key at http://www.crossref.org/requestaccount/
+    // Your API KEY is the email address that you used to register
+    $config['easydeposit_crossrefdoilookup_apikey'] = 'API_KEY';
+
 ?>
