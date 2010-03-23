@@ -2,6 +2,12 @@
 
     // Configuration file for the EasyDeposit application
 
+    // Admin username and password
+    // (The password is stored encrypted. 6da12e83ef06d1d59884a5ca724cbc75 is 'easydepositadmin'_
+    // The password can be changed in the admin interface 
+    $config['easydeposit_adminusername'] = 'easydepositadmin';
+    $config['easydeposit_adminpassword'] = '6da12e83ef06d1d59884a5ca724cbc75';
+
     // Location of the SWORD PHP library (this normally doesn't need to be changed)
     $config['easydeposit_librarylocation'] = 'system/application/libraries/swordapp-php-library';
 

@@ -21,6 +21,12 @@ class EasyDeposit extends Controller {
     // Whether this step is an authentication step
     var $authN = false;
 
+    // Whether this step is part of the administrative interface
+    var $adminInterface = false;
+
+    // Whether this step is should skip any integrity checks
+    var $noChecks = false;
+
     /**
      * Constructor
      *
@@ -58,7 +64,22 @@ class EasyDeposit extends Controller {
         $this->load->helper(array('form', 'url'));            
 
         // Check the user is logged in, else redirect them to the first step
-        if (!$this->authN)
+        if ($this->adminInterface)
+        {
+            // Check the user is logged in as an admin
+            if (empty($_SESSION['easydeposit-admin-isadmin']))
+            {
+                redirect('/adminlogin');
+            }
+        }
+        else if ($this->noChecks) {
+            // Do nothing... let the user right though
+            // This is used for thr admin interface login page, and any other
+            // pages that you do not wish to be protected by the admin password
+            // or the normal checks that ensure the user isn't messing with the
+            // order of the steps.
+        }
+        else if (!$this->authN)
         {
             // Check the user is authenticated
             include_once(APPPATH . 'controllers/' . $this->easydeposit_steps[0] . '.php');
@@ -163,6 +184,16 @@ class EasyDeposit extends Controller {
     function _authN()
     {
         $this->authN = true;
+    }
+
+    function _adminInterface()
+    {
+        $this->adminInterface = true;
+    }
+
+    function _noChecks()
+    {
+        $this->noChecks = true;
     }
 
     function _getservicedocument($str)
