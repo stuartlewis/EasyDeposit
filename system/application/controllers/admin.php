@@ -20,7 +20,7 @@ class Admin extends EasyDeposit
 
         // Display the header, page, and footer
         $this->load->view('header', $data);
-        $this->load->view('admin', $data);
+        $this->load->view('admin/admin', $data);
         $this->load->view('footer');
     }
 
@@ -31,6 +31,17 @@ class Admin extends EasyDeposit
 
         // Go to the home page
         redirect('/');
+    }
+
+    function credentials()
+    {
+        // Set the page title
+        $data['page_title'] = 'Change the administrator username or password';
+
+        // Display the header, page, and footer
+        $this->load->view('header', $data);
+        $this->load->view('admin/credentials', $data);
+        $this->load->view('footer');
     }
 
 }

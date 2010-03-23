@@ -25,7 +25,7 @@ class AdminLogin extends EasyDeposit
 
             // Display the header, page, and footer
             $this->load->view('header', $data);
-            $this->load->view('adminlogin', $data);
+            $this->load->view('admin/login', $data);
             $this->load->view('footer');
         }
         else

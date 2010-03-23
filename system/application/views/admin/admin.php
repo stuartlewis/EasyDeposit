@@ -2,7 +2,8 @@
     You can perform the following tasks from the administrative interface:
 
     <ul>
-        <li>To follow...</li>
+        <li><a href="./admin/credentials">Change admin username or password</a></li>
+        <li>More to follow...</li>
     </ul>
 
     Go back to the <a href="./">homepage</a> or
