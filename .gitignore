@@ -1,4 +1,4 @@
-.htaccess
+/.htaccess
 .idea*
 system/application/config/config.*
 system/application/config/easydeposit.*
