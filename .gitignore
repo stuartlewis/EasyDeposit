@@ -4,3 +4,4 @@ system/application/config/config.*
 system/application/config/easydeposit.*
 system/application/controllers/uoa*
 system/application/views/uoa*
+private/uploadfiles/*

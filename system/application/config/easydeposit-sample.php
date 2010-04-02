@@ -48,10 +48,10 @@ $config['easydeposit_metadata_peerreviewstatus'] = array('http://purl.org/eprint
 $config['easydeposit_uploadfiles_number'] = 5;
 
 // Where to save files (remember trailing slash!)
-$config['easydeposit_uploadfiles_savedir'] = '/tmp/sword-files/';
+$config['easydeposit_uploadfiles_savedir'] = 'private/uploadfiles/';
 
 // Where to store packages (make sure this directory exists)
-$config['easydeposit_deposit_packages'] = '/tmp/sword-files/';
+$config['easydeposit_deposit_packages'] = 'private/uploadfiles/';
 
 // Hard code depositurl, login and password if using the depositcredentials step
 $config['easydeposit_depositcredentials_depositurl'] = 'http://localhost/sword/deposit/123456789/2';

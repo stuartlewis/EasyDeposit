@@ -3,8 +3,18 @@
     {
         ?>
             <div class="error">
-                WARNING: Unable to write to config file. Please ensure the web server can write to
+                WARNING: Unable to write to config file. Please ensure the web server can write to<br />
                 <em>system/application/config/easydeposit.php</em> before proceeding.
+            </div>
+        <?php
+    }
+
+    if (!empty($packagewritewarning))
+    {
+        ?>
+            <div class="error">
+                WARNING: Unable to write to the package creation directory. Please ensure the web server can write to<br />
+                <em><?php echo $packagelocation; ?></em> before proceeding.
             </div>
         <?php
     }

@@ -23,7 +23,16 @@ class Admin extends EasyDeposit
         {
             $data['configwritewarning'] = true;
         }
-        
+
+        // See if we can write to the package upload directory
+        $path = str_replace('index.php', '', $_SERVER["SCRIPT_FILENAME"]);
+        $savepath = $path . $this->config->item('easydeposit_uploadfiles_savedir');
+        if (!is_writable($savepath))
+        {
+            $data['packagewritewarning'] = true;
+            $data['packagelocation'] = $savepath;
+        }
+
         // Warn the user if they are using the default password
         if ($this->config->item('easydeposit_adminpassword') == '6da12e83ef06d1d59884a5ca724cbc75')
         {
