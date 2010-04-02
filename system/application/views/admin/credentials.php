@@ -25,7 +25,7 @@
 
 <div class="section">
 
-    <input type="Submit" name="submit" id="submit" value="Next &gt;" />
+    <input type="Submit" name="submit" id="submit" value="Update" />
     <input type="Submit" name="cancel" id="cancel" value="Cancel" />
 
 </div>

@@ -16,7 +16,7 @@ class Admin extends EasyDeposit
     function index()
     {
         // Set the page title
-        $data['page_title'] = 'Administrative Interface';
+        $data['page_title'] = 'Menu';
 
         // See if we can write to the easydeposit.php config file
         if (!is_writable('system/application/config/easydeposit.php'))
@@ -31,9 +31,9 @@ class Admin extends EasyDeposit
         }
 
         // Display the header, page, and footer
-        $this->load->view('header', $data);
+        $this->load->view('admin/header', $data);
         $this->load->view('admin/admin', $data);
-        $this->load->view('footer');
+        $this->load->view('admin/footer');
     }
 
     function logout()
@@ -65,9 +65,9 @@ class Admin extends EasyDeposit
             $data['page_title'] = 'Change the administrator username or password';
 
             // Display the header, page, and footer
-            $this->load->view('header', $data);
+            $this->load->view('admin/header', $data);
             $this->load->view('admin/credentials', $data);
-            $this->load->view('footer');
+            $this->load->view('admin/footer');
         }
         else
         {
@@ -75,13 +75,94 @@ class Admin extends EasyDeposit
             $updates['easydeposit_adminusername'] = set_value('username');
             $updates['easydeposit_adminpassword'] = md5(set_value('newpassword'));
             $this->_updateconfigkeys($updates);
-            
+
             // Go to the admin home page
             redirect('/admin');
         }
     }
 
-    function _checkoldpassword($password)
+    function coresettings()
+    {
+        // Set the page title
+        $data['page_title'] = 'Edit the core settings';
+
+        // Set the current setting values
+        $data['supportemail'] = $this->config->item('easydeposit_supportemail');
+        $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');                
+
+        // Display the header, page, and footer
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/coresettings', $data);
+        $this->load->view('admin/footer');
+    }
+
+    function supportemail()
+        {
+            // Did the user click 'cancel'?
+            if (isset($_POST['cancel']))
+            {
+                redirect('/admin/coresettings');
+            }
+
+            // Set the current username
+            $data['supportemail'] = $this->config->item('easydeposit_supportemail');
+
+            $this->form_validation->set_rules('supportemail', 'Support Email', 'xss_clean|_clean|required');
+            if ($this->form_validation->run() == FALSE)
+            {
+                // Set the page title
+                $data['page_title'] = 'Change the support email address';
+
+                // Display the header, page, and footer
+                $this->load->view('admin/header', $data);
+                $this->load->view('admin/supportemail', $data);
+                $this->load->view('admin/footer');
+            }
+            else
+            {
+                // Update the support email
+                $updates['easydeposit_supportemail'] = set_value('supportemail');
+                $this->_updateconfigkeys($updates);
+
+                // Go to the core settings page
+                redirect('/admin/coresettings');
+            }
+        }
+
+    function librarylocation()
+        {
+            // Did the user click 'cancel'?
+            if (isset($_POST['cancel']))
+            {
+                redirect('/admin/coresettings');
+            }
+
+            // Set the current username
+            $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
+
+            $this->form_validation->set_rules('librarylocation', 'SWORDAPP PHP Library Location', 'xss_clean|_clean|required');
+            if ($this->form_validation->run() == FALSE)
+            {
+                // Set the page title
+                $data['page_title'] = 'Change the location of the SWORDAPP PHP Library';
+
+                // Display the header, page, and footer
+                $this->load->view('admin/header', $data);
+                $this->load->view('admin/librarylocation', $data);
+                $this->load->view('admin/footer');
+            }
+            else
+            {
+                // Update the support email
+                $updates['easydeposit_librarylocation'] = set_value('librarylocation');
+                $this->_updateconfigkeys($updates);
+
+                // Go to the core settings page
+                redirect('/admin/coresettings');
+            }
+        }
+
+            function _checkoldpassword($password)
     {
         // Get the username
         $username = $_POST['username'];
@@ -99,6 +180,11 @@ class Admin extends EasyDeposit
 
     function _updateconfigkeys($updates)
     {
+        // As a small bit of protection, make sure the user is an admin
+        if (empty($_SESSION['easydeposit-admin-isadmin'])) {
+            return;
+        }
+
         // Open the config file to read
         $configin = fopen('system/application/config/easydeposit.php', 'r');
         $save = '';
@@ -111,6 +197,7 @@ class Admin extends EasyDeposit
                     (strpos($line, '$config["' . $key . '"]') === 0))
                 {
                     $value = str_replace('"', '\"', $value);
+                    $value = str_replace('&quot;', '\"', $value);          
                     $line = '$config[' . "'" . $key . "'" . '] = "' . $value . '";';
                 }
             }

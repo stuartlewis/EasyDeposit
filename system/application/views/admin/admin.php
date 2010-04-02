@@ -24,12 +24,13 @@
 <?php if (empty($configwritewarning)) { ?>
     You can perform the following tasks from the administrative interface:
 
-    <ul>
-    <li><a href="./admin/credentials">Change admin username or password</a></li>
-    <li>Edit a configuration setting</li>
-    <li>Edit a file</li>
-    <li>More to follow...</li>
-    </ul>
+    <div class="section">
+        <ul>
+            <li><a href="./admin/credentials">Change admin username or password</a></li>
+            <li><a href="./admin/coresettings">Edit the core configuration settings</a></li>
+            <li>More to follow...</li>
+        </ul>
+    </div>
 <?php } ?>
 
     Go back to the <a href="./">homepage</a> or
