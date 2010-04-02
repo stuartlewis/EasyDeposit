@@ -140,7 +140,7 @@ class Admin extends EasyDeposit
             // Set the current username
             $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
 
-            $this->form_validation->set_rules('librarylocation', 'SWORDAPP PHP Library Location', 'xss_clean|_clean|required');
+            $this->form_validation->set_rules('librarylocation', 'SWORDAPP PHP Library Location', 'xss_clean|_clean|callback__checkswordappapi|required');
             if ($this->form_validation->run() == FALSE)
             {
                 // Set the page title
@@ -162,7 +162,7 @@ class Admin extends EasyDeposit
             }
         }
 
-            function _checkoldpassword($password)
+    function _checkoldpassword($password)
     {
         // Get the username
         $username = $_POST['username'];
@@ -171,6 +171,18 @@ class Admin extends EasyDeposit
         if (md5($password) != $this->config->item('easydeposit_adminpassword'))
         {
             $this->form_validation->set_message('_checkoldpassword', 'Old password is incorrect');
+            return FALSE;
+        }
+
+        // Must be OK
+        return TRUE;
+    }
+
+    function _checkswordappapi($apipath)
+    {
+        // Check the file exists
+        if (!file_exists($apipath . '/swordappclient.php')) {
+            $this->form_validation->set_message('_checkswordappapi', 'SWORDAPP API Library not found at <em>' . $apipath . '</em>');
             return FALSE;
         }
 
