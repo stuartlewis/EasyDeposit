@@ -18,21 +18,6 @@ class Admin extends EasyDeposit
         // Set the page title
         $data['page_title'] = 'Menu';
 
-        // See if we can write to the easydeposit.php config file
-        if (!is_writable('system/application/config/easydeposit.php'))
-        {
-            $data['configwritewarning'] = true;
-        }
-
-        // See if we can write to the package upload directory
-        $path = str_replace('index.php', '', $_SERVER["SCRIPT_FILENAME"]);
-        $savepath = $path . $this->config->item('easydeposit_uploadfiles_savedir');
-        if (!is_writable($savepath))
-        {
-            $data['packagewritewarning'] = true;
-            $data['packagelocation'] = $savepath;
-        }
-
         // Warn the user if they are using the default password
         if ($this->config->item('easydeposit_adminpassword') == '6da12e83ef06d1d59884a5ca724cbc75')
         {
@@ -106,70 +91,112 @@ class Admin extends EasyDeposit
     }
 
     function supportemail()
+    {
+        // Did the user click 'cancel'?
+        if (isset($_POST['cancel']))
         {
-            // Did the user click 'cancel'?
-            if (isset($_POST['cancel']))
-            {
-                redirect('/admin/coresettings');
-            }
-
-            // Set the current username
-            $data['supportemail'] = $this->config->item('easydeposit_supportemail');
-
-            $this->form_validation->set_rules('supportemail', 'Support Email', 'xss_clean|_clean|required');
-            if ($this->form_validation->run() == FALSE)
-            {
-                // Set the page title
-                $data['page_title'] = 'Change the support email address';
-
-                // Display the header, page, and footer
-                $this->load->view('admin/header', $data);
-                $this->load->view('admin/supportemail', $data);
-                $this->load->view('admin/footer');
-            }
-            else
-            {
-                // Update the support email
-                $updates['easydeposit_supportemail'] = set_value('supportemail');
-                $this->_updateconfigkeys($updates);
-
-                // Go to the core settings page
-                redirect('/admin/coresettings');
-            }
+            redirect('/admin/coresettings');
         }
+
+        // Set the current username
+        $data['supportemail'] = $this->config->item('easydeposit_supportemail');
+
+        $this->form_validation->set_rules('supportemail', 'Support Email', 'xss_clean|_clean|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            // Set the page title
+            $data['page_title'] = 'Change the support email address';
+
+            // Display the header, page, and footer
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/supportemail', $data);
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            // Update the support email
+            $updates['easydeposit_supportemail'] = set_value('supportemail');
+            $this->_updateconfigkeys($updates);
+
+            // Go to the core settings page
+            redirect('/admin/coresettings');
+        }
+    }
 
     function librarylocation()
+    {
+        // Did the user click 'cancel'?
+        if (isset($_POST['cancel']))
         {
-            // Did the user click 'cancel'?
-            if (isset($_POST['cancel']))
-            {
-                redirect('/admin/coresettings');
-            }
-
-            // Set the current username
-            $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
-
-            $this->form_validation->set_rules('librarylocation', 'SWORDAPP PHP Library Location', 'xss_clean|_clean|callback__checkswordappapi|required');
-            if ($this->form_validation->run() == FALSE)
-            {
-                // Set the page title
-                $data['page_title'] = 'Change the location of the SWORDAPP PHP Library';
-
-                // Display the header, page, and footer
-                $this->load->view('admin/header', $data);
-                $this->load->view('admin/librarylocation', $data);
-                $this->load->view('admin/footer');
-            }
-            else
-            {
-                // Update the support email
-                $updates['easydeposit_librarylocation'] = set_value('librarylocation');
-                $this->_updateconfigkeys($updates);
-
-                // Go to the core settings page
-                redirect('/admin/coresettings');
-            }
+            redirect('/admin/coresettings');
         }
+
+        // Set the current username
+        $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
+
+        $this->form_validation->set_rules('librarylocation', 'SWORDAPP PHP Library Location', 'xss_clean|_clean|callback__checkswordappapi|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            // Set the page title
+            $data['page_title'] = 'Change the location of the SWORDAPP PHP Library';
+
+            // Display the header, page, and footer
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/librarylocation', $data);
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            // Update the support email
+            $updates['easydeposit_librarylocation'] = set_value('librarylocation');
+            $this->_updateconfigkeys($updates);
+
+            // Go to the core settings page
+            redirect('/admin/coresettings');
+        }
+    }
+
+    function systemcheck()
+    {
+        // Set the page title
+        $data['page_title'] = 'System check';
+
+        // See if we can write to the easydeposit.php config file
+        $data['configwritewarning'] = false;
+        if (!is_writable('system/application/config/easydeposit.php'))
+        {
+            $data['configwritewarning'] = true;
+        }
+
+        // See if we can write to the package upload directory
+        $path = str_replace('index.php', '', $_SERVER["SCRIPT_FILENAME"]);
+        $savepath = $path . $this->config->item('easydeposit_uploadfiles_savedir');
+        $data['packagelocation'] = $savepath;
+        $data['packagewritewarning'] = false;
+        if (!is_writable($savepath))
+        {
+            $data['packagewritewarning'] = true;
+        }
+
+        // Warn the user if they are using the default password
+        $data['defaultpasswordwarning'] = false;
+        if ($this->config->item('easydeposit_adminpassword') == '6da12e83ef06d1d59884a5ca724cbc75')
+        {
+            $data['defaultpasswordwarning'] = true;
+        }
+
+        // Is the zip function available
+        $data['zipfunctionwarning'] = false;
+        if (!function_exists('zip_open'))
+        {
+            $data['zipfunctionwarning'] = true;
+        }
+
+        // Display the header, page, and footer
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/systemcheck', $data);
+        $this->load->view('admin/footer');
+    }
 
     function _checkoldpassword($password)
     {
