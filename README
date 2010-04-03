@@ -54,3 +54,8 @@ Changes
 -------
 0.1 (7th October 2009)
   - First release
+
+1.0 (dd mm 2010)
+ - New administrative interface to edit options and run a system check
+ - Improvements to the installation process to make it easier to install
+ - New DOI metadata step that populates metadata using the CrossRef API
