@@ -1,5 +1,9 @@
 <?php
 
+// Name: SelectRepository
+// Description: Select a repository from a pre-defined list, or by entering a new URL
+// Notes: Edit settings to set the list of Service Documents
+
 require_once('EasyDeposit.php');
 
 class SelectRepository extends EasyDeposit

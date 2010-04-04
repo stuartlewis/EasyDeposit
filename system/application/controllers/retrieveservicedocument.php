@@ -1,5 +1,9 @@
 <?php
 
+// Name: RetrieveServiceDocument
+// Description: Retrieve a service document from a repository using a pre-configured set of credentials
+// Notes: Edit settings to set the username, password, on-behalf-of and Service Document location
+
 require_once('EasyDeposit.php');
 
 class RetrieveServiceDocument extends EasyDeposit

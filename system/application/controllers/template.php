@@ -1,5 +1,9 @@
 <?php
 
+// Name:
+// Description:
+// Notes: 
+
 require_once('EasyDeposit.php');
 
 class Template extends EasyDeposit

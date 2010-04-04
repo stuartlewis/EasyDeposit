@@ -1,5 +1,9 @@
 <?php
 
+// Name: NoLogin
+// Description: Do not require the user to log in and authenticate
+// Notes: A random number is used for the user ID
+
 require_once('EasyDeposit.php');
 
 class Nologin extends EasyDeposit

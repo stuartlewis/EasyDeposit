@@ -1,5 +1,9 @@
 <?php
 
+// Name: UploadFiles
+// Description: Upload a configurable number of files
+// Notes: Edit settings to set the maximum number of files that a user can upload
+
 require_once('EasyDeposit.php');
 
 class UploadFiles extends EasyDeposit

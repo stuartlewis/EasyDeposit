@@ -1,5 +1,9 @@
 <?php
 
+// Name: DepositCredentials
+// Description: Set some hardcoded deposit credentials
+// Notes: Edit settings to set the deposit URL / username / password / on-behalf-of
+
 require_once('EasyDeposit.php');
 
 class DepositCredentials extends EasyDeposit

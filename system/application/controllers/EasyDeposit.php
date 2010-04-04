@@ -27,6 +27,12 @@ class EasyDeposit extends Controller {
     // Whether this step is should skip any integrity checks
     var $noChecks = false;
 
+    // The description of this step
+    var $description;
+
+    // Notes associated with this step
+    var $notes;
+
     /**
      * Constructor
      *
@@ -170,6 +176,14 @@ class EasyDeposit extends Controller {
             }
             $counter++;        
         }
+    }
+
+    function _describeself()
+    {
+        $self['name'] = get_class($this);
+        $self['description'] = description;
+        $self['notes'] = notes;
+        return $self;                
     }
 
     function _clean($in)

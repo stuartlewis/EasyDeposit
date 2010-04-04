@@ -1,5 +1,9 @@
 <?php
 
+// Name: Deposit
+// Description: Perform the SWORD package and deposit
+// Notes: This step creates the submission package, and then deposits it using SWORD
+
 require_once('EasyDeposit.php');
 
 class Deposit extends EasyDeposit

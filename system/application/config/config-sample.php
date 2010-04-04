@@ -6,12 +6,12 @@
 |--------------------------------------------------------------------------
 |
 | URL to your CodeIgniter root. Typically this will be your base URL,
-| WITH a trailing slash:
+| and the location where you installed the application WITH a trailing slash:
 |
-|	http://example.com/
+|	http://example.com/easydeposit/
 |
 */
-$config['base_url']	= "http://example.com/";
+$config['base_url']	= "http://example.com/easydeposit/";
 
 /*
 |--------------------------------------------------------------------------

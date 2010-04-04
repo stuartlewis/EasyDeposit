@@ -1,5 +1,9 @@
 <?php
 
+// Name: ServiceDocumentLogin
+// Description: tries to authenticate a user by requesting a service document
+// Notes: Edit the settings to set the URL of the Service Document
+
 require_once('EasyDeposit.php');
 
 class ServiceDocumentLogin extends EasyDeposit

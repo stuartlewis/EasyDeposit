@@ -39,6 +39,57 @@ class Admin extends EasyDeposit
         redirect('/');
     }
 
+    function steps()
+    {
+        // Set the page title
+        $data['page_title'] = 'Configure deposit steps';
+
+        // Set the steps for display
+        $steps = $this->config->item('easydeposit_steps');
+        $stepcounter = 0;
+        foreach ($steps as $step)
+        {
+            // Get the details of the step
+            $data['currentsteps'][$stepcounter++] = $step;
+        }
+
+        // Look up details of each step
+        if ($controllers = opendir('system/application/controllers'))
+        {
+            while (($controller = readdir($controllers)) !== FALSE)
+            {
+                if (strstr($controller, '.php') == '.php')
+                {
+                    $stepcode = fopen('system/application/controllers/' . $controller, 'r');
+                    $classname = str_replace('.php', '', $controller);
+                    while (!feof($stepcode))
+                    {
+                        $line = trim(fgets($stepcode, 4096));
+                        if (strpos($line, '// Name: ') === 0)
+                        {
+                            $data['allsteps'][$classname]['name'] = substr($line, 9);
+                        }
+                        else if (strpos($line, '// Description: ') === 0)
+                        {
+                            $data['allsteps'][$classname]['description'] = substr($line, 15);
+                        }
+                        else if (strpos($line, '// Notes: ') === 0)
+                        {
+                            $data['allsteps'][$classname]['notes'] = substr($line, 10);
+                        }
+                    }
+                    fclose($stepcode);
+                }
+            }
+            closedir($controllers);
+        }
+
+        // Display the header, page, and footer
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/steps', $data);
+        $this->load->view('admin/footer');
+    }
+
     function credentials()
     {
         // Did the user click 'cancel'?
@@ -190,6 +241,13 @@ class Admin extends EasyDeposit
         if (!function_exists('zip_open'))
         {
             $data['zipfunctionwarning'] = true;
+        }
+
+        // Is the ldap function available
+        $data['ldapfunctionwarning'] = false;
+        if (!function_exists('ldap_connect'))
+        {
+            $data['ldapfunctionwarning'] = true;
         }
 
         // Display the header, page, and footer

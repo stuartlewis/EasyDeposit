@@ -1,5 +1,9 @@
 <?php
 
+// Name: Title
+// Description: Set a title for the item being deposited
+// Notes: Useful if you want to minimise the amount of metadata collected by the user, if the repository manager will complete the rest of the metadata later
+
 require_once('EasyDeposit.php');
 
 class Title extends EasyDeposit

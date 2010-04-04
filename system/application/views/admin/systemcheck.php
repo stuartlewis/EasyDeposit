@@ -59,7 +59,7 @@
     {
         ?>
             <div class="error">
-                WARNING: Your system does not have the PHP Zip functionality installed. 
+                WARNING: Your system does not have the PHP Zip functionality installed.
                 Contact your system administrator about this. Without the PHP Zip
                 functionality installed you will not be able to create SWORD deposit
                 packages.
@@ -71,6 +71,27 @@
         ?>
             <div class="positive">
                 OK: Your system has the PHP Zip functionality installed.
+            </div>
+        <?php
+    }
+
+    if (!empty($ldapfunctionwarning))
+    {
+        ?>
+            <div class="error">
+                WARNING: Your system does not have the PHP LDAP functionality installed.
+                Contact your system administrator about this.<br />
+                <strong>You only require the LDAP fnctionality if you are using the
+                LDAP Login authentication step. If you are not using this authentication
+                method, you can ignore this error.</strong>
+            </div>
+        <?php
+    }
+    else
+    {
+        ?>
+            <div class="positive">
+                OK: Your system has the PHP LDAP functionality installed.
             </div>
         <?php
     }

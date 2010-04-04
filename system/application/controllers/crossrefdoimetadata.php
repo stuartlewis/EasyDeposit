@@ -1,11 +1,14 @@
 <?php
 
+// Name: CrossRefDOIMetadata
+// Description: Display metadata that has been downloaded from a DOI using the CrossRef API
+// Notes: This step must be preceeded by the CrossRefDOILookup step
+
 require_once('EasyDeposit.php');
 
 class CrossRefDOIMetadata extends EasyDeposit
 {
-
-    function Metadata()
+    function CrossREFDOIMetadata()
     {
         // Initalise the parent
         parent::EasyDeposit();

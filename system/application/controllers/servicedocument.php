@@ -1,5 +1,9 @@
 <?php
 
+// Name: ServiceDocument
+// Description: Display a Service Document to a user to allow them to select the deposit collection
+// Notes: Typically follows the SelectRepository or RetrieveServiceDocument step
+
 require_once('EasyDeposit.php');
 
 class ServiceDocument extends EasyDeposit

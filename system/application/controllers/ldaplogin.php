@@ -1,5 +1,9 @@
 <?php
 
+// Name: LDAPLogin
+// Description: Authenticates users against and LDAP server
+// Notes: Edit settings to set the LDAP server and search context
+
 require_once('EasyDeposit.php');
 
 class LDAPLogin extends EasyDeposit
