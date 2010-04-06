@@ -92,50 +92,42 @@ class Admin extends EasyDeposit
 
     function editwelcome()
     {
-        // Did the user click 'cancel'?
-        if (isset($_POST['cancel']))
-        {
-            redirect('/admin');
-        }
+        // Edit the welcome message
+        $this->_edit('editwelcome',
+                     'system/application/views/welcome_message.php',
+                     'system/application/views/defaults/welcome_message.php',
+                     'Welcome screen',
+                     true);
+    }
 
-        $this->form_validation->set_rules('content', 'Welcome screen', 'required');
-        if (($this->form_validation->run() == FALSE) || (isset($_POST['revert'])))
-        {
-            // Set the page title
-            $data['page_title'] = 'Edit the welcome screen content';
+    function editheader()
+    {
+        // Edit the header
+        $this->_edit('editheader',
+                     'system/application/views/header.php',
+                     'system/application/views/defaults/header.php',
+                     'header',
+                     false);
+    }
 
-            // Load javascript
-            $data['javascript'] = array('tiny_mce/tiny_mce.js');
+    function editfooter()
+    {
+        // Edit the footer
+        $this->_edit('editfooter',
+                     'system/application/views/footer.php',
+                     'system/application/views/defaults/footer.php',
+                     'footer',
+                      false);
+    }
 
-            // Load the welcome screen html or revert to original?
-            if (isset($_POST['revert']))
-            {
-                $data['html'] = file_get_contents('system/application/views/defaults/welcome_message.php');
-            }
-            else
-            {
-                $data['html'] = file_get_contents('system/application/views/welcome_message.php');
-            }
-
-            // Check we can write to the welcome screen
-            if (is_writable('system/application/views/welcome_message.php'))
-            {
-                $data['canwrite'] = true;
-            }
-
-            // Display the header, page, and footer
-            $this->load->view('admin/header', $data);
-            $this->load->view('admin/editwelcome', $data);
-            $this->load->view('admin/footer');
-        }
-        else
-        {
-            // Update the content
-            file_put_contents('system/application/views/welcome_message.php', html_entity_decode(set_value('content')));
-
-            // Go to the admin home page
-            redirect('/admin');
-        }
+    function editcss()
+    {
+        // Edit the CSS file
+        $this->_edit('editcss',
+                     'css/style.css',
+                     'system/application/views/defaults/style.css',
+                     'CSS',
+                      false);
     }
 
     function credentials()
@@ -316,6 +308,67 @@ class Admin extends EasyDeposit
         $this->load->view('admin/header', $data);
         $this->load->view('admin/systemcheck', $data);
         $this->load->view('admin/footer');
+    }
+
+    function _edit($method, $filename, $default, $description, $html)
+    {
+        // Did the user click 'cancel'?
+        if (isset($_POST['cancel']))
+        {
+            redirect('/admin');
+        }
+
+        $this->form_validation->set_rules('content', $description, 'required');
+        if (($this->form_validation->run() == FALSE) || (isset($_POST['revert'])))
+        {
+            // Set the page title
+            $data['page_title'] = 'Edit the ' . $description . ' content';
+
+            // Load javascript
+            if ($html)
+            {
+                $data['javascript'] = array('tiny_mce/tiny_mce.js');
+                $data['tinymce'] = true;
+            }
+
+            // Load the welcome screen html or revert to original?
+            if (isset($_POST['revert']))
+            {
+                $data['html'] = file_get_contents($default);
+            }
+            else
+            {
+                $data['html'] = file_get_contents($filename);
+            }
+
+            // Check we can write to the welcome screen
+            if (is_writable($filename))
+            {
+                $data['canwrite'] = true;
+            }
+            else
+            {
+                $data['filename'] = $filename;
+            }
+
+            // Allow the view to redirect back to the right form
+            $data['method'] = $method;
+
+            // Display the header, page, and footer
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/edit', $data);
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            // Update the content
+            $content = html_entity_decode(set_value('content'));
+            $content = str_replace('&#39;', "'", $content);
+            file_put_contents($filename, $content);
+
+            // Go to the admin home page
+            redirect('/admin');
+        }
     }
 
     function _checkoldpassword($password)
