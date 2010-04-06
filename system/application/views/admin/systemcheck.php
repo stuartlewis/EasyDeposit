@@ -55,6 +55,44 @@
         <?php
     }
 
+    if (!empty($curlfunctionwarning))
+    {
+        ?>
+            <div class="error">
+                WARNING: Your system does not have the PHP Curl functionality installed.
+                Contact your system administrator about this. Without the PHP Curl
+                functionality installed you will not be able to deposit SWORD packages.
+            </div>
+        <?php
+    }
+    else
+    {
+        ?>
+            <div class="positive">
+                OK: Your system has the PHP Curl functionality installed.
+            </div>
+        <?php
+    }
+
+    if (!empty($sxmlfunctionwarning))
+    {
+        ?>
+            <div class="error">
+                WARNING: Your system does not have the PHP SimpleXML functionality installed.
+                Contact your system administrator about this. Without the PHP SimpleXML
+                functionality installed you will not be able to parse SWORD responses.
+            </div>
+        <?php
+    }
+    else
+    {
+        ?>
+            <div class="positive">
+                OK: Your system has the PHP SimpleXML functionality installed.
+            </div>
+        <?php
+    }
+
     if (!empty($zipfunctionwarning))
     {
         ?>

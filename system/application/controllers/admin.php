@@ -284,6 +284,20 @@ class Admin extends EasyDeposit
             $data['defaultpasswordwarning'] = true;
         }
 
+        // Is the curl function available
+        $data['curlfunctionwarning'] = false;
+        if (!function_exists('curl_exec'))
+        {
+            $data['curlfunctionwarning'] = true;
+        }
+
+        // Is the curl function available
+        $data['sxmlfunctionwarning'] = false;
+        if (!function_exists('simplexml_load_string'))
+        {
+            $data['sxmlfunctionwarning'] = true;
+        }
+
         // Is the zip function available
         $data['zipfunctionwarning'] = false;
         if (!function_exists('zip_open'))
