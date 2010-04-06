@@ -16,6 +16,7 @@
     <div class="section">
         <ul>
             <li><a href="./admin/steps">Edit the deposit steps</a></li>
+            <li><a href="./admin/editwelcome">Edit the welcome screen content</a></li>
             <li><a href="./admin/credentials">Change admin username or password</a></li>
             <li><a href="./admin/coresettings">Edit the core configuration settings</a></li>
             <li><a href="./admin/systemcheck">Perform a system check</a></li>
