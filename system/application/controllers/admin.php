@@ -90,6 +90,57 @@ class Admin extends EasyDeposit
         $this->load->view('admin/footer');
     }
 
+    function arrangesteps()
+    {
+        // What is the function we want to perform, and on which step?
+        $mode = $this->uri->segment(3);
+        $step = $this->uri->segment(4);
+
+        // Add a new step
+        if ($mode == 'add')
+        {
+            $steps = $this->config->item('easydeposit_steps');
+            array_push($steps, strtolower($step));
+            $updates['easydeposit_steps'] = $steps;
+            $this->_updateconfigkeys($updates);
+
+        }
+
+        // Delete a step
+        else if ($mode == 'delete')
+        {
+            $steps = $this->config->item('easydeposit_steps');
+            unset($steps[$this->uri->segment(5)]);
+            $updates['easydeposit_steps'] = $steps;
+            $this->_updateconfigkeys($updates);
+        }
+
+        // Move a step up
+        else if ($mode == 'up')
+        {
+            $steps = $this->config->item('easydeposit_steps');
+            $temp = $steps[$this->uri->segment(5)];
+            $steps[$this->uri->segment(5)] = $steps[($this->uri->segment(5) - 1)];
+            $steps[($this->uri->segment(5) - 1)] = $temp;
+            $updates['easydeposit_steps'] = $steps;
+            $this->_updateconfigkeys($updates);
+        }
+
+        // Move a step down
+        else if ($mode == 'down')
+        {
+            $steps = $this->config->item('easydeposit_steps');
+            $temp = $steps[$this->uri->segment(5)];
+            $steps[$this->uri->segment(5)] = $steps[($this->uri->segment(5) + 1)];
+            $steps[($this->uri->segment(5) + 1)] = $temp;
+            $updates['easydeposit_steps'] = $steps;
+            $this->_updateconfigkeys($updates);
+        }
+
+        // Go back to the steps screen
+        redirect('/admin/steps');
+    }
+
     function editwelcome()
     {
         // Edit the welcome message
@@ -417,9 +468,28 @@ class Admin extends EasyDeposit
                 if ((strpos($line, '$config[' . "'" . $key . "'" . ']') === 0) ||
                     (strpos($line, '$config["' . $key . '"]') === 0))
                 {
-                    $value = str_replace('"', '\"', $value);
-                    $value = str_replace('&quot;', '\"', $value);          
-                    $line = '$config[' . "'" . $key . "'" . '] = "' . $value . '";';
+                    if (is_Array($value))
+                    {
+                        $output = 'array(';
+                        $counter = 0;
+                        foreach ($value as $bit)
+                        {
+                            $output .= "'" . $bit . "'";
+                            $counter++;
+                            if ($counter < count($value))
+                            {
+                                $output .= ', ';
+                            }
+                        }
+                        $output .= ');';
+                        $line = '$config[' . "'" . $key . "'" . '] = ' . $output;
+                    }
+                    else
+                    {
+                        $value = str_replace('"', '\"', $value);
+                        $value = str_replace('&quot;', '\"', $value);
+                        $line = '$config[' . "'" . $key . "'" . '] = "' . $value . '";';
+                    }
                 }
             }
             if ($line == '?' . '>')

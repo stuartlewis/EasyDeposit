@@ -2,30 +2,44 @@
     You have the current steps selected:
 
     <div class="section">
-        <ul>
+        <table>
+            <tr><th>#</th><th>Name</th><th>Description</th><th colspan="3">Re-order / Delete</th><th>Settings</th></tr>
             <?php
+                $counter = 1;
                 foreach ($currentsteps as $step)
                 {
-                    ?><li><strong><? if (!empty($allsteps[$step]['name'])) { echo $allsteps[$step]['name']; } else { echo $step; } ?>: </strong>
-                    <? if (!empty($allsteps[$step]['description'])) { echo $allsteps[$step]['description']; }?><?php
+                    ?><tr>
+                        <td><?php echo $counter; ?></td>
+                        <td><strong><? if (!empty($allsteps[$step]['name'])) { echo $allsteps[$step]['name']; } else { echo $step; } ?></strong></td>
+                        <td><? if (!empty($allsteps[$step]['description'])) { echo $allsteps[$step]['description']; }?></td>
+                        <td><?php if ($counter != 1) { ?><a href="./admin/arrangesteps/up/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/arrow_up.png" alt="Move step down"/></a><?php } ?></td>
+                        <td><?php if ($counter != count($currentsteps)) { ?><a href="./admin/arrangesteps/down/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/arrow_down.png" alt="Move step down"/></a><?php } ?></td>
+                        <td><a href="./admin/arrangesteps/delete/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/cross.png" alt="Move step down"/></a></td>
+                        <td><a href="">Edit settings</a></td>
+                    </tr><?php
+                    $counter++;
                 }
             ?>
-        </ul>
+        </table>
     </div>
 
     Steps you can add:
 
     <div class="section">
-        <ul>
+        <table>
+            <tr><th>Name</th><th>Description</th><th>Notes</th><th>Add</th></tr>
             <?php
                 foreach ($allsteps as $step)
                 {
-                    ?><li><strong><? if (!empty($step['name'])) { echo $step['name']; } else { echo $step; } ?>: </strong>
-                    <? if (!empty($step['description'])) { echo $step['description']; }?>
-                    <em><? if (!empty($step['notes'])) { echo '('.$step['notes'].')'; }?></em></li><?php
+                    ?><tr>
+                        <td><strong><? echo $step['name']; ?></strong></td>
+                        <td><? if (!empty($step['description'])) { echo $step['description']; }?></td>
+                        <td><small><? if (!empty($step['notes'])) { echo $step['notes']; }?></small></td>
+                        <td><a href="./admin/arrangesteps/add/<?php echo $step['name']; ?>"><img src="images/add.png"></a></td>
+                    </tr><?php
                 }
             ?>
-        </ul>
+        </table>
     </div>
 
     Go back to the <a href="./admin">administration home page</a>.

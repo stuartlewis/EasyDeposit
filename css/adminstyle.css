@@ -55,6 +55,25 @@ label.fixedwidthlabel {
     width: 225px;    
 }
 
+table {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    color: #34322c;
+    position: relative;
+    font-size: 12px;
+    overflow: auto;
+    width: 90%;
+}
+
+th {
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+img {
+    border: 0;
+}
+
 #header {
     background: url('../images/swordlogo.jpg') top right no-repeat;
 }
