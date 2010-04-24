@@ -14,8 +14,8 @@
                         <td><? if (!empty($allsteps[$step]['description'])) { echo $allsteps[$step]['description']; }?></td>
                         <td><?php if ($counter != 1) { ?><a href="./admin/arrangesteps/up/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/arrow_up.png" alt="Move step down"/></a><?php } ?></td>
                         <td><?php if ($counter != count($currentsteps)) { ?><a href="./admin/arrangesteps/down/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/arrow_down.png" alt="Move step down"/></a><?php } ?></td>
-                        <td><a href="./admin/arrangesteps/delete/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/cross.png" alt="Move step down"/></a></td>
-                        <td><a href="">Edit settings</a></td>
+                        <td><?php if (count($currentsteps) > 1) { ?><a href="./admin/arrangesteps/delete/<?php echo $step; ?>/<?php echo ($counter - 1); ?>"><img src="images/cross.png" alt="Delete step"/></a><?php } ?></td>
+                        <td><a href="./admin/editstepsettings/<?php echo $step; ?>">Edit settings</a></td>
                     </tr><?php
                     $counter++;
                 }
