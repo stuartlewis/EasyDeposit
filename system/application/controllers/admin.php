@@ -101,7 +101,7 @@ class Admin extends EasyDeposit
         {
             $steps = $this->config->item('easydeposit_steps');
             array_push($steps, strtolower($step));
-            $updates['easydeposit_steps'] = $steps;
+            $updates['array_easydeposit_steps'] = $steps;
             $this->_updateconfigkeys($updates);
 
         }
@@ -111,7 +111,7 @@ class Admin extends EasyDeposit
         {
             $steps = $this->config->item('easydeposit_steps');
             unset($steps[$this->uri->segment(5)]);
-            $updates['easydeposit_steps'] = $steps;
+            $updates['array_easydeposit_steps'] = $steps;
             $this->_updateconfigkeys($updates);
         }
 
@@ -122,7 +122,7 @@ class Admin extends EasyDeposit
             $temp = $steps[$this->uri->segment(5)];
             $steps[$this->uri->segment(5)] = $steps[($this->uri->segment(5) - 1)];
             $steps[($this->uri->segment(5) - 1)] = $temp;
-            $updates['easydeposit_steps'] = $steps;
+            $updates['array_easydeposit_steps'] = $steps;
             $this->_updateconfigkeys($updates);
         }
 
@@ -133,12 +133,112 @@ class Admin extends EasyDeposit
             $temp = $steps[$this->uri->segment(5)];
             $steps[$this->uri->segment(5)] = $steps[($this->uri->segment(5) + 1)];
             $steps[($this->uri->segment(5) + 1)] = $temp;
-            $updates['easydeposit_steps'] = $steps;
+            $updates['array_easydeposit_steps'] = $steps;
             $this->_updateconfigkeys($updates);
         }
 
         // Go back to the steps screen
         redirect('/admin/steps');
+    }
+
+    function editstepsettings()
+    {
+        // Did the user click 'cancel'?
+        if (isset($_POST['cancel']))
+        {
+            redirect('/admin/arrangesteps');
+        }
+
+        // The step we're dealing with
+        $step = $this->uri->segment(3);
+
+        // Did the user click update?
+        if (isset($_POST['submit']))
+        {
+            // Any updates - we'll record them as we go along, but only
+            // commit them if all the validation passes OK
+            $updates = array();
+
+            // Look for each field we need to validate
+            foreach ($_POST as $field => $value)
+            {
+                // Field definitions begin with define-
+                if (strpos($field, 'define-') === 0)
+                {
+                    // Get the actual field name
+                    $fieldname = substr($field, 7);
+
+                    // What type is it?
+                    if ($value == 'string')
+                    {
+                        // A nice easy String!
+
+                        // Is it 'required'?
+                        if (!empty($_POST['required-' . $fieldname]))
+                        {
+                            $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean|required');
+                        }
+                        else
+                        {
+                            $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean');
+                        }
+
+                        // Record the update
+                        $updates['string_easydeposit_' . $step . '_' . $fieldname] = str_replace(array("\n","\r","\r\n"), '\\n', $_POST[$fieldname]);
+                    }
+                    else if ($value == 'array')
+                    {
+                        // An array of Strings
+                        $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean');
+                        $updates['array_easydeposit_' . $step . '_' . $fieldname] = explode("\n", $_POST[$fieldname]);
+                    }
+                    else if ($value == 'assocarray')
+                    {
+                        // An associative array of Strings
+                        $assoc = array();
+                        foreach (explode("\n", $_POST[$fieldname]) as $line)
+                        {
+                            if (trim($line) != '')
+                            {
+                                $assockey = trim(substr($line, 0, strpos($line, ' ')));
+                                $assocvalue = trim(substr($line, strpos($line, ' ') + 1));
+                                $assoc[$assockey] = $assocvalue;
+                            }
+                        }
+                        $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean');
+                        $updates['assoc_easydeposit_' . $step . '_' . $fieldname] = $assoc;
+                    }
+                }
+            }
+            if ($this->form_validation->run() != FALSE)
+            {
+                // Update any updated config keys
+                $this->_updateconfigkeys($updates);
+
+                // Go to the steps config page
+                redirect('/admin/steps');
+            }
+        }
+
+        // Load any config options for this step
+        $data['stepname'] = $step;
+        $configoptions = array();
+        foreach ($this->config->config as $key => $value)
+        {
+            if (strpos($key, 'easydeposit_' . $step . '_') === 0)
+            {
+                $configoptions[str_replace('easydeposit_' . $step . '_', '', $key)] = $value;
+            }
+        }
+        $data['configoptions'] = $configoptions;
+
+        // Set the page title
+        $data['page_title'] = 'Edit step settings (' . $step . ')';
+
+        // Display the header, page, and footer
+        $this->load->view('admin/header', $data);
+        $this->load->view('config/' . $step, $data);
+        $this->load->view('admin/footer');
     }
 
     function editwelcome()
@@ -208,8 +308,8 @@ class Admin extends EasyDeposit
         else
         {
             // Update the username and password
-            $updates['easydeposit_adminusername'] = set_value('username');
-            $updates['easydeposit_adminpassword'] = md5(set_value('newpassword'));
+            $updates['string_easydeposit_adminusername'] = set_value('username');
+            $updates['string_easydeposit_adminpassword'] = md5(set_value('newpassword'));
             $this->_updateconfigkeys($updates);
 
             // Go to the admin home page
@@ -257,7 +357,7 @@ class Admin extends EasyDeposit
         else
         {
             // Update the support email
-            $updates['easydeposit_supportemail'] = set_value('supportemail');
+            $updates['string_easydeposit_supportemail'] = set_value('supportemail');
             $this->_updateconfigkeys($updates);
 
             // Go to the core settings page
@@ -290,7 +390,7 @@ class Admin extends EasyDeposit
         else
         {
             // Update the support email
-            $updates['easydeposit_librarylocation'] = set_value('librarylocation');
+            $updates['string_easydeposit_librarylocation'] = set_value('librarylocation');
             $this->_updateconfigkeys($updates);
 
             // Go to the core settings page
@@ -465,20 +565,56 @@ class Admin extends EasyDeposit
             $line = trim(fgets($configin, 4096));
             foreach($updates as $key => $value)
             {
+                // Work out the type
+                $type = 'string';
+                if (strpos($key, 'array_') === 0)
+                {
+                    $type = 'array';
+                    $key = substr($key, 6);
+                }
+                else if (strpos($key, 'assoc_') === 0)
+                {
+                    $type = 'assoc';
+                    $key = substr($key, 6);
+                }
+                else
+                {
+                    $key = substr($key, 7);    
+                }
+
                 if ((strpos($line, '$config[' . "'" . $key . "'" . ']') === 0) ||
                     (strpos($line, '$config["' . $key . '"]') === 0))
                 {
-                    if (is_Array($value))
+                    if ($type == 'assoc') {
+                        $output = 'array(';
+                        $counter = 0;
+                        foreach ($value as $bit => $bitvalue)
+                        {
+                            if ((trim($bit) != '') && (trim($bitvalue) != '')) {
+                                $output .= "'" . $bit . "' => '" . $bitvalue . "'";
+                                $counter++;
+                                if ($counter < count($value))
+                                {
+                                    $output .= ', ';
+                                }
+                            }
+                        }
+                        $output .= ');';
+                        $line = '$config[' . "'" . $key . "'" . '] = ' . $output;
+                    }
+                    else if ($type == 'array')
                     {
                         $output = 'array(';
                         $counter = 0;
                         foreach ($value as $bit)
                         {
-                            $output .= "'" . $bit . "'";
-                            $counter++;
-                            if ($counter < count($value))
-                            {
-                                $output .= ', ';
+                            if (trim($bit) != '') {
+                                $output .= "'" . $bit . "'";
+                                $counter++;
+                                if ($counter < count($value))
+                                {
+                                    $output .= ', ';
+                                }
                             }
                         }
                         $output .= ');';
