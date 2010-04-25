@@ -26,7 +26,7 @@ class Title extends EasyDeposit
 
             // Display the header, page, and footer
             $this->load->view('header', $data);
-            $this->load->view('metadata');
+            $this->load->view('title');
             $this->load->view('footer');
         }
         else
