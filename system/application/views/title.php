@@ -4,7 +4,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('metadata'); ?>
+<?php echo form_open('title'); ?>
 
 <div class="section">
 
