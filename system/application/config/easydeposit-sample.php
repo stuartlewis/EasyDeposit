@@ -70,5 +70,7 @@ $config['easydeposit_email_end'] = "Best wishes,\n\nThe repository team\nsupport
 // Register for a key at http://www.crossref.org/requestaccount/
 // Your API KEY is the email address that you used to register
 $config['easydeposit_crossrefdoilookup_apikey'] = 'API_KEY';
+$config['easydeposit_crossrefdoilookup_itemtypes'] = array('http://purl.org/eprint/type/JournalArticle' => 'Journal article', 'http://purl.org/eprint/type/ConferencePaper' => 'Conference paper', 'http://purl.org/eprint/type/ConferencePoster' => 'Conference poster', 'http://purl.org/eprint/type/Thesis' => 'Thesis or dissertation', 'http://purl.org/eprint/type/Book' => 'Book', 'http://purl.org/eprint/type/BookItem' => 'Book chapter', 'http://purl.org/eprint/type/BookReview' => 'Book review', 'http://purl.org/eprint/type/Report' => 'Report', 'http://purl.org/eprint/type/WorkingPapaer' => 'Working paper', 'http://purl.org/eprint/type/NewsItem' => 'News item', 'http://purl.org/eprint/type/Patent' => 'Patent', 'http://purl.org/eprint/type/Report' => 'Report');
+$config['easydeposit_crossrefdoilookup_peerreviewstatus'] = array('http://purl.org/eprint/status/PeerReviewed' => 'Yes', 'http://purl.org/eprint/status/NonPeerReviewed' => 'No');
 
 ?>
