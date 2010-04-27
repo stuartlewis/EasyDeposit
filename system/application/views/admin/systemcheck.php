@@ -46,8 +46,8 @@
         ?>
             <div class="error">
                 <img src="images/cross.png" />
-                You are using the default EasyDeposit password. For
-                security reasons should change this using the menu option below.
+                You are using the default EasyDeposit password. For security reasons you should change
+                this using the menu option on the administrative home page.
             </div>
         <?php
     }
