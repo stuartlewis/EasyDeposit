@@ -410,9 +410,19 @@ class Admin extends EasyDeposit
             $data['configwritewarning'] = true;
         }
 
-        // See if we can write to the package upload directory
+        // See if we can write to the file upload directory
         $path = str_replace('index.php', '', $_SERVER["SCRIPT_FILENAME"]);
         $savepath = $path . $this->config->item('easydeposit_uploadfiles_savedir');
+        $data['uploadlocation'] = $savepath;
+        $data['uploadwritewarning'] = false;
+        if (!is_writable($savepath))
+        {
+            $data['uploadwritewarning'] = true;
+        }
+
+        // See if we can write to the package upload directory
+        $path = str_replace('index.php', '', $_SERVER["SCRIPT_FILENAME"]);
+        $savepath = $path . $this->config->item('easydeposit_deposit_packages');
         $data['packagelocation'] = $savepath;
         $data['packagewritewarning'] = false;
         if (!is_writable($savepath))

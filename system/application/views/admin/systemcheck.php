@@ -20,6 +20,27 @@
         <?php
     }
 
+    if (!empty($uploadwritewarning))
+    {
+        ?>
+            <div class="error">
+                <img src="images/cross.png" />
+                Unable to write to the file upload directory. Please ensure the web server can write to<br />
+                <em><?php echo $uploadlocation; ?></em> before proceeding.
+            </div>
+        <?php
+    }
+    else
+    {
+        ?>
+            <div class="positive">
+                <img src="images/tick.png" />
+                Able to write to the file upload directory. The web server can write to<br />
+                <em><?php echo $uploadlocation; ?></em>
+            </div>
+        <?php
+    }
+
     if (!empty($packagewritewarning))
     {
         ?>
