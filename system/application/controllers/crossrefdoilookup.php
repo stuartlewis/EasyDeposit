@@ -47,7 +47,7 @@ class CrossRefDOILookup extends EasyDeposit
 
         // Check the DOI is in the correct format (strip any http prefix)
         $doi = str_replace('http://dx.doi.org/', '', $doi);
-        if (strpos($doi, '10.') !== 0)
+        if ((strpos($doi, '10.') !== 0) || (strlen($doi) < 4))
         {
             $this->form_validation->set_message('_lookupdoi', 'Bad DOI');
             return FALSE;
