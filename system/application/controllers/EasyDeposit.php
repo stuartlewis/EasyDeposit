@@ -73,7 +73,7 @@ class EasyDeposit extends Controller {
         if ($this->adminInterface)
         {
             // Check the user is logged in as an admin
-            if (empty($_SESSION['easydeposit-admin-isadmin']))
+            if (empty($_SESSION['easydeposit-admin-isadmin-' . base_url()]))
             {
                 redirect('/adminlogin');
             }

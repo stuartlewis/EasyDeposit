@@ -33,7 +33,7 @@ class Admin extends EasyDeposit
     function logout()
     {
         // Unset the admin session variable
-        unset($_SESSION['easydeposit-admin-isadmin']);
+        unset($_SESSION['easydeposit-admin-isadmin-' . base_url()]);
 
         // Go to the home page
         redirect('/');
@@ -563,7 +563,7 @@ class Admin extends EasyDeposit
     function _updateconfigkeys($updates)
     {
         // As a small bit of protection, make sure the user is an admin
-        if (empty($_SESSION['easydeposit-admin-isadmin'])) {
+        if (empty($_SESSION['easydeposit-admin-isadmin-' . base_url()])) {
             return;
         }
 

@@ -31,8 +31,8 @@ class AdminLogin extends EasyDeposit
         else
         {
             // Record the fact they are logged in
-            $_SESSION['easydeposit-admin-isadmin'] = true;
-
+            $_SESSION['easydeposit-admin-isadmin-' . base_url()] = true;
+            
             // Go to the admin home page
             redirect('/admin');
         }
