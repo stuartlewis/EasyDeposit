@@ -56,7 +56,7 @@ class CrossRefDOIMetadata extends EasyDeposit
     {
         // Verify the metadata that has been stored
         $data[] = array('Title', $_SESSION['crossrefdoi-title'], 'crossrefdoimetadata', 'true');
-        for ($authorpointer = 1; $authorpointer < $_SESSION['crossrefdoi-authorcount']; $authorpointer++)
+        for ($authorpointer = 1; $authorpointer <= $_SESSION['crossrefdoi-authorcount']; $authorpointer++)
         {
             $data[] = array('Author ' . $authorpointer, $_SESSION['crossrefdoi-author' . $authorpointer], 'crossrefdoimetadata', 'true');
         }
@@ -83,7 +83,7 @@ class CrossRefDOIMetadata extends EasyDeposit
         // Use the metadata in making the package
         $package->setTitle($_SESSION['crossrefdoi-title']);
         $citation = '';
-        for ($authorpointer = 1; $authorpointer < $_SESSION['crossrefdoi-authorcount']; $authorpointer++)
+        for ($authorpointer = 1; $authorpointer <= $_SESSION['crossrefdoi-authorcount']; $authorpointer++)
         {
             $package->addCreator($_SESSION['crossrefdoi-author' . $authorpointer]);
             $citation .= $_SESSION['crossrefdoi-author' . $authorpointer] . ','; 
