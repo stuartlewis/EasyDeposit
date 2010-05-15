@@ -63,11 +63,16 @@ class EasyDeposit extends Controller {
             // with the PHP class loader and cause a LogicException
         }
 
-        // Turn the sessions on
-        session_start();
-
         // Load some helpers required for user and step validation
         $this->load->helper(array('form', 'url'));            
+
+        // Turn the sessions on
+        // Restrict the session to the base url of this instance in case multiple
+        // instances are installed on the same domain
+        $sessionhost = substr(base_url(), 7, strpos(base_url(), '/', 7) - 7);
+        $sessionpath = substr(base_url(), strpos(base_url(), '/', 8));
+        session_set_cookie_params(1800, $sessionpath, $sessionhost);
+        session_start();
 
         // Check the user is logged in, else redirect them to the first step
         if ($this->adminInterface)
