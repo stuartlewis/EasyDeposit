@@ -96,9 +96,10 @@ class EasyDeposit extends Controller {
             }
    
             // Check that a user isn't trying to jump to a step that they shouldn't be
-            if (empty($_SESSION['currentstep']))
+            if ((empty($_SESSION['currentstep'])) || (!in_array(strtolower(get_class($this)), $this->easydeposit_steps)))
             {
-                // No current step, so set the step to be the first page, and send them there
+                // No current step, or invalid step selected,
+                // so set the step to be the first page, and send them there
                 $_SESSION['currentstep'] = $this->easydeposit_steps[0];
                 if (strtolower(get_class($this)) != $this->easydeposit_steps[0])
                 {
@@ -121,7 +122,7 @@ class EasyDeposit extends Controller {
         }
         else
         {
-            // Check the user isn't tryig to use an invalid authentication step
+            // Check the user isn't trying to use an invalid authentication step
             if (strtolower(get_class($this)) != $this->easydeposit_steps[0])
             {
                 redirect('/' . $this->easydeposit_steps[0]);
