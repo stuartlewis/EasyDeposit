@@ -17,6 +17,9 @@ class Deposit extends EasyDeposit
 
     function index()
     {
+        // A variable to hold an error message
+        $error = '';
+
         try
         {
             // Allow each step to contribute to the package
@@ -54,12 +57,38 @@ class Deposit extends EasyDeposit
             if (($response->sac_status == 200) || ($response->sac_status == 201))
             {
                 $_SESSION['deposited-response'] = $response->sac_xml;
-                $_SESSION['deposited-url'] = '' . $response->sac_id; // have to concat '' so it is treated as a str and not a simplexml element
+                $_SESSION['deposited-url'] = (string)$response->sac_id;
+            }
+            else
+            {
+                $error = 'Server returned status code: ' . $response->sac_status . "\n\n";
+                $error .= 'Server provided response: ' . $response->sac_xml;
             }
         }
         catch (Exception $e)
         {
-            // Nothing to do - later pages will handle this
+            // Catch the exception for reporting
+            $error = 'Error: ' . $e->getMessage() . "\n\n";
+            $error .= 'Deposit URL: ' . $_SESSION['depositurl'] . "\n";
+            $error .= 'Deposit username: ' . $_SESSION['sword-username'] . "\n";
+            $error .= 'Package file: ' . $this->config->item('easydeposit_deposit_packages') . $this->userid . '.zip' . "\n";                                                         
+
+            if (!empty($response->sac_xml))
+            {
+                $error .= "\n\nResponse:" . $response->sac_xml;
+            }
+        }
+
+        // If there was an error, send it to the administrator
+        if (!empty($error))
+        {
+            $to = $this->config->item('easydeposit_supportemail');
+            $subject = 'Error with EasyDeposit system';
+            $headers = 'From: ' . $to . ' <' . $to . ">\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/plain; charset=utf-8\r\n";
+            $headers .= "Content-Transfer-Encoding: quoted-printable\r\n";
+            mail($to, $subject, $error, $headers);
         }
 
         // Go to the next stage
