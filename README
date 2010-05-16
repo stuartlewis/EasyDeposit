@@ -47,7 +47,7 @@ Documentation
 -------------
 View documentation, including installation instructions at:
 
- - http://wiki.github.com/stuartlewis/EasyDeposit
+ - http://easydeposit.swordapp.org/
 
 
 Changes
@@ -56,6 +56,8 @@ Changes
  - New administrative interface to edit options and run a system check
  - Improvements to the installation process to make it easier to install
  - New DOI metadata step that populates metadata using the CrossRef API
+ - Better session and cookie handling allowing multiple instances to run
+   on a single server
 
 0.1 (7th October 2009)
   - First release
