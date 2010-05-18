@@ -39,7 +39,7 @@
 
 <div class="section">
 
-    Please note: it may take a or two for the deposit to complete. Do not press the button more than once.
+    Please note: it may take a minute or two for the deposit to complete. Do not press the button more than once.
     If you have any problems please email <a href='mailto:<?php echo $supportemail; ?>'><?php echo $supportemail; ?></a>
     quoting reference '<?php echo $id; ?>'.
 
