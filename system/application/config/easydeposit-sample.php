@@ -6,7 +6,7 @@
 // !!! No config line is allowed to span multiple lines. !!!
 
 // Admin username and password
-// (The password is stored encrypted. 6da12e83ef06d1d59884a5ca724cbc75 is 'easydepositadmin'_
+// (The password is stored encrypted. 6da12e83ef06d1d59884a5ca724cbc75 is 'easydepositadmin'
 // The password can be changed in the admin interface
 $config['easydeposit_adminusername'] = 'easydepositadmin';
 $config['easydeposit_adminpassword'] = '6da12e83ef06d1d59884a5ca724cbc75';
