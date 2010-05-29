@@ -1,7 +1,7 @@
 <p>
 	Please enter the location where files are stored once they are uploaded by the user
     and the packages are made, before the are deposited using SWORD. The web server needs
-    to be able to read and write to the location.
+    to be able to read and write to the location. The path must end with a slash.
 </p>
 
 <p>
@@ -15,6 +15,7 @@
 
 <input type="hidden" name="define-packages" value="string" />
 <input type="hidden" name="required-packages" value="true" />
+<input type="hidden" name="directory-packages" value="true" />
 <input type="hidden" name="description-packages" value="Package save location" />
 
 <div class="section">

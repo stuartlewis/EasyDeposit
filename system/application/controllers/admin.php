@@ -176,11 +176,27 @@ class Admin extends EasyDeposit
                         // Is it 'required'?
                         if (!empty($_POST['required-' . $fieldname]))
                         {
-                            $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean|required');
+                            // Is it a directory?
+                            if (!empty($_POST['directory-' . $fieldname]))
+                            {
+                                $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean|required|callback__isdirectory');
+                            }
+                            else
+                            {
+                                $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean|required');
+                            }
                         }
                         else
                         {
-                            $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean');
+                            // Is it a directory?
+                            if (!empty($_POST['directory-' . $fieldname]))
+                            {
+                                $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean|callback__isdirectory');
+                            }
+                            else
+                            {
+                                $this->form_validation->set_rules($fieldname, $_POST['description-' . $fieldname], 'xss_clean|_clean');
+                            }
                         }
 
                         // Record the update
@@ -560,6 +576,33 @@ class Admin extends EasyDeposit
         return TRUE;
     }
 
+    function _isdirectory($dir)
+    {
+        // Does it contain a trailing slash?
+        if ((substr_compare($dir, '/', strlen($dir) - 1) !== 0) &&
+            (substr_compare($dir, '\\', strlen($dir) - 1) !== 0))
+        {
+            $this->form_validation->set_message('_isdirectory', 'Path does not end with a slash');
+            return FALSE;
+        }
+
+        // Is it a directory?
+        if (!is_dir($dir))
+        {
+            $this->form_validation->set_message('_isdirectory', $dir . ' is not a directory');
+            return FALSE;
+        }
+
+        // Is it writeable?
+        if (!is_writeable($dir))
+        {
+            $this->form_validation->set_message('_isdirectory', $dir . ' is not writeable by the web server');
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+    
     function _updateconfigkeys($updates)
     {
         // As a small bit of protection, make sure the user is an admin
