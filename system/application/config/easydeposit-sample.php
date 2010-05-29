@@ -59,6 +59,12 @@ $config['easydeposit_depositcredentials_username'] = 'email@example.com';
 $config['easydeposit_depositcredentials_password'] = 'password';
 $config['easydeposit_depositcredentials_obo'] = '';
 
+// Hard code depositurls, logins and passwords if using the multipledepositcredentials step
+$config['easydeposit_multipledepositcredentials_depositurl'] = array('http://localhost/sword/deposit/123456789/2', 'http://localhost/sword/deposit/123456789/2');
+$config['easydeposit_multipledepositcredentials_username'] = array('email@example.com', 'email@another.com');
+$config['easydeposit_multipledepositcredentials_password'] = array('password1', 'password2');
+$config['easydeposit_multipledepositcredentials_obo'] = array('', '');
+
 // Email settings
 $config['easydeposit_email_from'] = 'example@email.com';
 $config['easydeposit_email_fromname'] = 'Example sender name';
