@@ -1,7 +1,7 @@
 <?php
 
 // Name: ThankYou
-// Description: Proves a thank you message to the user at the end of the submission process
+// Description: Prints a thank you message to the user at the end of the submission process
 // Notes: Typically the last step in a submission process. Can also be used to display an error if the deposit failed
 
 require_once('EasyDeposit.php');
