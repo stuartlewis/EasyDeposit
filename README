@@ -58,6 +58,7 @@ Changes
  - New DOI metadata step that populates metadata using the CrossRef API
  - Better session and cookie handling allowing multiple instances to run
    on a single server
+ - New multipledeposit step to enable deposit to multiple URLs
 
 0.1 (7th October 2009)
   - First release
