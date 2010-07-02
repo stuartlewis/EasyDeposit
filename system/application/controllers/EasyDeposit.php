@@ -42,7 +42,7 @@ class EasyDeposit extends Controller {
         // Initalise the parent
         parent::Controller();
             
-        // Load the SWORD config
+        // Load the EasyDeposit config
         $this->config->load('easydeposit');
 
         // Get and validate the steps

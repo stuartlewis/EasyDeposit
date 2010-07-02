@@ -264,7 +264,8 @@ class Admin extends EasyDeposit
                      'system/application/views/welcome_message.php',
                      'system/application/views/defaults/welcome_message.php',
                      'Welcome screen',
-                     true);
+                     true,
+                     $this->config->item('easydeposit_welcome_title'));
     }
 
     function editheader()
@@ -487,7 +488,7 @@ class Admin extends EasyDeposit
         $this->load->view('admin/footer');
     }
 
-    function _edit($method, $filename, $default, $description, $html)
+    function _edit($method, $filename, $default, $description, $html, $title = "")
     {
         // Did the user click 'cancel'?
         if (isset($_POST['cancel']))
@@ -500,6 +501,9 @@ class Admin extends EasyDeposit
         {
             // Set the page title
             $data['page_title'] = 'Edit the ' . $description . ' content';
+            
+            // Decide if the page requires a title to be set
+            $data['title'] = $title;
 
             // Load javascript
             if ($html)
@@ -508,7 +512,7 @@ class Admin extends EasyDeposit
                 $data['tinymce'] = true;
             }
 
-            // Load the welcome screen html or revert to original?
+            // Load the current code  or revert to original?
             if (isset($_POST['revert']))
             {
                 $data['html'] = file_get_contents($default);
@@ -518,7 +522,7 @@ class Admin extends EasyDeposit
                 $data['html'] = file_get_contents($filename);
             }
 
-            // Check we can write to the welcome screen
+            // Check we can write to the file
             if (is_writable($filename))
             {
                 $data['canwrite'] = true;
@@ -542,6 +546,13 @@ class Admin extends EasyDeposit
             $content = html_entity_decode(set_value('content'));
             $content = str_replace('&#39;', "'", $content);
             file_put_contents($filename, $content);
+
+            // Does the title need setting?
+            if (!empty($_POST['title']))
+            {
+                $updates['string_easydeposit_welcome_title'] = $_POST['title'];;
+                $this->_updateconfigkeys($updates);   
+            }
 
             // Go to the admin home page
             redirect('/admin');

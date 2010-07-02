@@ -13,10 +13,22 @@
     </div>
 <?php } ?>
 
+<?php if (!empty($title)) { ?>
+<div class="section">
+
+<div class="formtext">
+        <label for="title" class="fixedwidthlabel">Page title:</label>
+        <input type="text" id="title" name="title" size="30" value="<?php echo $title; ?>" />
+    </div>    
+
+</div>
+<?php } ?>
+
 <div class="section">
 
     <textarea id="content" name="content" rows="20" cols="100"><?php echo $html; ?></textarea><br />   
     <?php if (!empty($tinymce)) { ?><a href="javascript:toggleEditor('content');">Add/Remove HTML editor</a><?php } ?>
+
 </div>
 
 <div class="section">

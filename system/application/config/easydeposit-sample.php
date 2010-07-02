@@ -14,6 +14,9 @@ $config['easydeposit_adminpassword'] = '6da12e83ef06d1d59884a5ca724cbc75';
 // Location of the SWORD PHP library (this normally doesn't need to be changed)
 $config['easydeposit_librarylocation'] = 'system/application/libraries/swordapp-php-library';
 
+// The name of the application (as shown on the welcome page)
+$config['easydeposit_welcome_title'] = "EasyDeposit Client";
+
 // The steps that a submission should take
 // The first of these should be a login step that has public static methods _loggedin and _id
 $config['easydeposit_steps'] = array('nologin', 'selectrepository', 'servicedocument', 'metadata', 'uploadfiles', 'verify', 'deposit', 'thankyou');

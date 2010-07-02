@@ -1,7 +1,7 @@
 <p>Welcome to the EasyDeposit client. The web client is extensible and customisable.</p>
 <div class="section">
 <ul>
-<li>Access the <a href="admin/">administrative interface</a> or edit files to:             
+<li>Access the <a href="admin/">administrative interface</a> or edit files to:                   
 <ul>
 <li>Customise this welcome screen</li>
 <li>Change the style and look and feel in css/style.css</li>
