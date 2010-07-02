@@ -3,7 +3,7 @@
 <ul>
 <li>Access the <a href="admin/">administrative interface</a> or edit files to:             
 <ul>
-<li>Customise this welcome screen in system/application/views/welcome_message.php</li>
+<li>Customise this welcome screen</li>
 <li>Change the style and look and feel in css/style.css</li>
 <li>Make the header and footer match your corporate look and feel in system/application/views/header.php and footer.php</li>
 <li>Change the authentication method to match your local requirements</li>
