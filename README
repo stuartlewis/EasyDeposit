@@ -59,6 +59,7 @@ Changes
  - Better session and cookie handling allowing multiple instances to run
    on a single server
  - New multipledeposit step to enable deposit to multiple URLs
+ - Name of client (shown on welcome page) can be configured
 
 0.1 (7th October 2009)
   - First release
