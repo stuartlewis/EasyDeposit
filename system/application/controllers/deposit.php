@@ -77,6 +77,8 @@ class Deposit extends EasyDeposit
             {
                 $error .= "\n\nResponse:" . $response->sac_xml;
             }
+
+            $_SESSION['deposited-response'] = $error;
         }
 
         // If there was an error, send it to the administrator
