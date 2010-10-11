@@ -60,6 +60,7 @@ Changes
    on a single server
  - New multipledeposit step to enable deposit to multiple URLs
  - Name of client (shown on welcome page) can be configured
+ - Deposits without files can be made
 
 0.1 (7th October 2009)
   - First release

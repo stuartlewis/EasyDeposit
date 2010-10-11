@@ -22,6 +22,16 @@ class Deposit extends EasyDeposit
 
         try
         {
+            // Check to see if the packager directory exists, and if not
+            // make the directory to save the files in
+            $path = str_replace('index.php', '', $_SERVER["SCRIPT_FILENAME"]);            
+            $id = $this->userid;
+            $savepath = $path . $this->config->item('easydeposit_uploadfiles_savedir') . $id;
+            if (!file_exists($savepath))
+            {
+                mkdir($savepath);
+            }
+
             // Allow each step to contribute to the package
             require_once($this->config->item('easydeposit_librarylocation') . '/packager_mets_swap.php');
             $package = new PackagerMetsSwap($this->config->item('easydeposit_uploadfiles_savedir'),
