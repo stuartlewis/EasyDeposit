@@ -64,7 +64,7 @@ class Deposit extends EasyDeposit
                                       $format,
                                       $contenttype);
 
-            if (($response->sac_status == 200) || ($response->sac_status == 201))
+            if (($response->sac_status >= 200) && ($response->sac_status < 300))
             {
                 $_SESSION['deposited-response'] = $response->sac_xml;
                 $_SESSION['deposited-url'] = (string)$response->sac_id;
