@@ -62,6 +62,7 @@ Changes
  - Name of client (shown on welcome page) can be configured
  - Deposits without files can be made
  - Deposits accept any 20x response code as success
+ - Upgrade to CodeIgniter 2.0
 
 0.1 (7th October 2009)
   - First release
