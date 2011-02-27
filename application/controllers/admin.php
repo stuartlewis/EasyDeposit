@@ -44,6 +44,13 @@ class Admin extends EasyDeposit
         // Set the page title
         $data['page_title'] = 'Configure deposit steps';
 
+        // See if we can write to the easydeposit.php config file
+        $data['configwritewarning'] = false;
+        if (!is_writable('application/config/easydeposit.php'))
+        {
+            redirect('/admin/systemcheck');
+        }
+
         // Set the steps for display
         $steps = $this->config->item('easydeposit_steps');
         $stepcounter = 0;

@@ -9,7 +9,7 @@ the client to tailor it to your own requirements, new custom steps can be
 easily created, and the look and feel of the client can be easily changed
 by editing the CSS and header and footer files.
 
-The client was originally written by Stuart Lewis (stuart@stuartlewis.com) at
+EasyDeposit was originally written by Stuart Lewis (stuart@stuartlewis.com) at
 The University of Auckland Library.
 
 
@@ -22,9 +22,12 @@ The software is based on the CodeIgniter platform:
 
   - Please read codeigniter-license.txt for terms of use.
 
-Also included with this distribution is a copy of mootools:
+Also included with this distribution are copies of mootools, silkicons, and
+TinyMCE:
 
   - Please read mootools-licence.txt for terms of use.
+  - Please read silkicons-licence.txt for terms of use.
+  - Please read tinymce-licence.txt for terms of use.
 
 
 SWORD Compatibility
@@ -52,7 +55,7 @@ View documentation, including installation instructions at:
 
 Changes
 -------
-1.0 (dd mm 2010)
+1.0 (10 February 2010)
  - New administrative interface to edit options and run a system check
  - Improvements to the installation process to make it easier to install
  - New DOI metadata step that populates metadata using the CrossRef API
@@ -62,6 +65,8 @@ Changes
  - Name of client (shown on welcome page) can be configured
  - Deposits without files can be made
  - Deposits accept any 20x response code as success
+ - Fixed 'localhost' / Firefox cookie issue
+ - Fixed images when mod_rewrite isn't being used
  - Upgrade to CodeIgniter 2.0
 
 0.1 (7th October 2009)
