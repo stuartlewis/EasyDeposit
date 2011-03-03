@@ -109,8 +109,10 @@ class Deposit extends EasyDeposit
 
     public static function _email($message)
     {
-        // Add the URL
-        $message .= 'The URL of your item is ' . $_SESSION['deposited-url'] . "\n\n";
+        // Add the URL if set
+        if (!empty($_SESSION['deposited-url'])) {
+            $message .= 'The URL of your item is ' . $_SESSION['deposited-url'] . "\n\n";
+        }
         return $message;
     }
 }
