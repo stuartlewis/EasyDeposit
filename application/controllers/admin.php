@@ -551,6 +551,8 @@ class Admin extends EasyDeposit
         {
             // Update the content
             $content = html_entity_decode(set_value('content'));
+            // Decode a second time to cope with the XSS protection applied by CodeIgniter
+            $content = html_entity_decode($content);
             $content = str_replace('&#39;', "'", $content);
             file_put_contents($filename, $content);
 
