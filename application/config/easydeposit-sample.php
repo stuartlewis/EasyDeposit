@@ -29,6 +29,12 @@ $config['easydeposit_ldaplogin_netidname'] = 'NetID';
 $config['easydeposit_ldaplogin_server'] = 'ldaps://ldap.example.com';
 $config['easydeposit_ldaplogin_context'] = 'OU=users,DC=example,DC=com';
 
+// SSO login settings
+$config['easydeposit_ssologin_username'] = 'HTTP_MAIL';
+$config['easydeposit_ssologin_firstname'] = 'HTTP_GIVENNAME';
+$config['easydeposit_ssologin_surname'] = 'HTTP_SN';
+$config['easydeposit_ssologin_email'] = 'HTTP_MAIL';
+
 // ServiceDocument Login settings
 $config['easydeposit_servicedocumentlogin_url'] = 'http://example.com/sword/servicedocument';
 

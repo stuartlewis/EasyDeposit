@@ -68,6 +68,8 @@ Changes
  - Fixed 'localhost' / Firefox cookie issue
  - Fixed images when mod_rewrite isn't being used
  - Upgrade to CodeIgniter 2.0
+ - Addition of ssologin login step to support SSO systems such as
+   Shibboleth or CoSign
 
 0.1 (7th October 2009)
   - First release
