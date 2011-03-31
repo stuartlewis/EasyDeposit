@@ -287,7 +287,7 @@ class EasyDeposit extends CI_Controller {
         catch (Exception $e)
         {
             $this->form_validation->set_message('_getservicedocument',
-                                                'An error occured when trying to parse the service document: ' . $e);
+                                                'An error occurred when trying to parse the service document: ' . $e);
             return FALSE;
         }
     }
