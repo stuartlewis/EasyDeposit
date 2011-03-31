@@ -87,7 +87,7 @@
                                     echo form_open('servicedocument');
                                     ?><label>Nested service document:</label>
                                     <input type="Submit" name="submit" id="submit" value="More &gt;" class="smallbutton" />
-                                    <input type="hidden" name="url" value="<?php echo $collection->sac_service; ?>" />
+                                    <input type="hidden" name="otherurl" value="<?php echo $collection->sac_service; ?>" />
                                     <input type="hidden" name="username" value="<?php echo $username ?>" />
                                     <input type="hidden" name="password" value="<?php echo $password ?>" />
                                     <input type="hidden" name="obo" value="<?php echo $obo ?>" /><?php                                    

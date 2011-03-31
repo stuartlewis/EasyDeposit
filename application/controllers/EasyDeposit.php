@@ -237,13 +237,28 @@ class EasyDeposit extends CI_Controller {
         try {
             $swordappclient = new SWORDAPPClient();
             $urls = $this->config->item('easydeposit_selectrepository_list');
-            $url = $_POST['url'];
-            $url = str_replace('/client/client/', '/client/', $url);
 
-            if (is_numeric($_POST['url']))
+            if (!empty($_POST['url']))
             {
-                $url = $urls[$_POST['url']];
+                $url = $_POST['url'];
+                $url = str_replace('/client/client/', '/client/', $url);
+
+                if (is_numeric($_POST['url']))
+                {
+                    $url = $urls[$_POST['url']];
+                }
             }
+            else if (!empty($_POST['otherurl']))
+            {
+                $url = $_POST['otherurl'];        
+            }
+            else
+            {
+                $this->form_validation->set_message('_getservicedocument',
+                                                    'No Service Document URL provided');
+                return FALSE;
+            }
+
             $servicedocument = $swordappclient->servicedocument($url,
                                                                 $_POST['username'],
                                                                 $_POST['password'],
