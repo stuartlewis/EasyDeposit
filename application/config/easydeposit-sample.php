@@ -39,7 +39,7 @@ $config['easydeposit_ssologin_email'] = 'HTTP_MAIL';
 $config['easydeposit_servicedocumentlogin_url'] = 'http://example.com/sword/servicedocument';
 
 // A list of service documents to provide in the selectrepository step
-$config['easydeposit_selectrepository_list'] = array('http://localhost:8080/sword/servicedocument', 'http://client.swordapp.org/client/servicedocument', 'http://dspace.swordapp.org/sword/servicedocument', 'http://sword.eprints.org/sword-app/servicedocument', 'http://sword.intralibrary.com/IntraLibrary-Deposit/', 'http://fedora.swordapp.org/sword-fedora/servicedocument');
+$config['easydeposit_selectrepository_list'] = array('http://localhost:8080/sword/servicedocument', 'http://demo.dspace.org/sword/servicedocument', 'http://sword.eprints.org/sword-app/servicedocument', 'http://sword.intralibrary.com/IntraLibrary-Deposit/');
 
 // Credentials with which to retrieve a service document automatically
 $config['easydeposit_retrieveservicedocument_url'] = 'http://example.com/sword/servicedocument';
