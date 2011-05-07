@@ -255,6 +255,19 @@ class Admin extends EasyDeposit
         }
         $data['configoptions'] = $configoptions;
 
+        // Some steps want extra information:
+        //  - Available packagers
+        $packagers = array();
+        if ($handle = opendir($this->config->item('easydeposit_librarylocation'))) {
+            while (false !== ($file = readdir($handle))) {
+                if (strpos($file, 'packager_') === 0) {
+                    array_push($packagers, substr($file, 0, strlen($file) - 4));
+                }
+            }
+            closedir($handle);
+        }
+        $data['packagers'] = $packagers;
+
         // Set the page title
         $data['page_title'] = 'Edit step settings (' . $step . ')';
 
