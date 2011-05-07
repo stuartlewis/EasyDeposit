@@ -238,7 +238,11 @@ class EasyDeposit extends CI_Controller {
             $swordappclient = new SWORDAPPClient();
             $urls = $this->config->item('easydeposit_selectrepository_list');
 
-            if (!empty($_POST['url']))
+            if (!empty($_POST['otherurl']))
+            {
+                $url = $_POST['otherurl'];
+            }
+            else if (isset($_POST['url']))
             {
                 $url = $_POST['url'];
                 $url = str_replace('/client/client/', '/client/', $url);
@@ -247,10 +251,6 @@ class EasyDeposit extends CI_Controller {
                 {
                     $url = $urls[$_POST['url']];
                 }
-            }
-            else if (!empty($_POST['otherurl']))
-            {
-                $url = $_POST['otherurl'];        
             }
             else
             {
