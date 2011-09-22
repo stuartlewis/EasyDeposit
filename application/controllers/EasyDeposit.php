@@ -68,6 +68,10 @@ class EasyDeposit extends CI_Controller {
         // Restrict the session to the base url of this instance in case multiple
         // instances are installed on the same domain
         $sessionhost = substr(base_url(), 7, strpos(base_url(), '/', 7) - 7);
+
+        // Strip port numbers from host.
+        $sessionhost = preg_replace('/^(.*):\d+$/', '$1', $sessionhost);
+
         $sessionpath = substr(base_url(), strpos(base_url(), '/', 8));
 
         // There is a bug with firefox that means localhost is not not supported as a session host.
