@@ -14,4 +14,4 @@
 </div>
 <p>The client is written using the <a href="http://codeigniter.com/">CodeIgniter</a> MVC PHP framework.</p>
 <p>Documentation for EasyDeposit can be found at <a href="http://easydeposit.swordapp.org/">http://easydeposit.swordapp.org/</a><a></a></p>
-<div class="positive">To start a deposit... <a href="EasyDeposit/">click here!!!</a></div>
+<div class="positive">To start a deposit... <a href="easydeposit/">click here!!!</a></div>

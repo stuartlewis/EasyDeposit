@@ -54,7 +54,7 @@ class EasyDeposit extends CI_Controller {
             // Check the step exists as a class
             if (!file_exists('application/controllers/' . $stepname . '.php'))
             {
-                show_error('Error in configuration setting: invalid step name  - ' .
+                show_error('Error in configuration setting: invald step name  - ' .
                            $this->_clean($stepname));
             }
             // Using class_exists would have been better, but this seemed to mess
