@@ -9,7 +9,7 @@
 <div class="section">
 
     <div class="formtext">
-        <label for="username">Username:</label>
+        <label for="username" class="fixedwidthlabel">Username:</label>
         <input type="text" id="username" name="username" size="30" value="<?php echo set_value('username'); ?>" />
     </div>
 
