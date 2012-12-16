@@ -4,7 +4,7 @@
 // Description:
 // Notes: 
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class Template extends EasyDeposit
 {

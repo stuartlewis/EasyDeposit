@@ -4,7 +4,7 @@
 // Description: Lookup metadata for a DOI using the CrossRef API
 // Notes: This step must be followed by the CrossRefDOIMetadata step
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class CrossRefDOILookup extends EasyDeposit
 {

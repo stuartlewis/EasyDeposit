@@ -4,7 +4,7 @@
 // Description: Verify all the data entered in previous steps
 // Notes: Typically used before the deposit step
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class Verify extends EasyDeposit
 {

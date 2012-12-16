@@ -4,7 +4,7 @@
 // Description: Authenticates users against and LDAP server
 // Notes: Edit settings to set the LDAP server and search context
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class LDAPLogin extends EasyDeposit
 {

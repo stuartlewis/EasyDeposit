@@ -4,7 +4,7 @@
 // Description: Select some standard metadata for journal articles
 // Notes: Collects title, up to three authors, abstract, type, peer review status, citation and link
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class Metadata extends EasyDeposit
 {

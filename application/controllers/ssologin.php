@@ -4,7 +4,7 @@
 // Description: Authenticates users against an external Single-Sign-On (SSO) system
 // Notes: Configure the HTTP headers to examine
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class SSOLogin extends EasyDeposit
 {

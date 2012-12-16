@@ -4,7 +4,7 @@
 // Description: Perform the SWORD package and deposit to multiple destinations
 // Notes: This step creates the submission package, and then deposits it using SWORD
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class MultipleDeposit extends EasyDeposit
 {

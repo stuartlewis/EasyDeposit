@@ -4,7 +4,7 @@
 // Description: Prints a thank you message to the user at the end of the multiple submission process
 // Notes: Typically the last step in a submission process. Can also be used to display an error if a deposit failed
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class MultipleThankYou extends EasyDeposit
 {

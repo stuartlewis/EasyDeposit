@@ -4,7 +4,7 @@
 // Description: Set some hardcoded deposit credentials (once per server to deposit to)
 // Notes: Edit settings to set the deposit URLs / usernames / passwords / on-behalf-of
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class MultipleDepositCredentials extends EasyDeposit
 {

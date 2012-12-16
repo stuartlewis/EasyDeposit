@@ -1,6 +1,6 @@
 <?php
 
-require_once('EasyDeposit.php');
+require_once('easydeposit.php');
 
 class AdminLogin extends EasyDeposit
 {
