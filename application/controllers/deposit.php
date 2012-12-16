@@ -17,8 +17,10 @@ class Deposit extends EasyDeposit
 
     function index()
     {
-        // A variable to hold an error message
+        // Variables to hold an error message and the XML SWORD deposit response
+
         $error = '';
+        $response = '';
 
         try
         {
