@@ -1,17 +1,17 @@
 <p>
-	Please complete the following form to edit the location of the SWORD PHP Library
+	Please complete the following form to edit the location of the SWORD v2 PHP Library
     (you do not normally need to edit this setting):
 </p>
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('admin/librarylocation'); ?>
+<?php echo form_open('admin/v2librarylocation'); ?>
 
 <div class="section">
 
     <div class="formtext">
-        <label for="librarylocation" class="fixedwidthlabel">Library location:</label>
-        <input type="text" id="librarylocation" name="librarylocation" size="60" value="<?php echo $librarylocation; ?>" />
+        <label for="v2librarylocation" class="fixedwidthlabel">Library location:</label>
+        <input type="text" id="v2librarylocation" name="v2librarylocation" size="60" value="<?php echo $v2librarylocation; ?>" />
     </div>
 
 </div>

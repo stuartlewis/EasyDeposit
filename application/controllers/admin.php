@@ -361,7 +361,8 @@ class Admin extends EasyDeposit
 
         // Set the current setting values
         $data['supportemail'] = $this->config->item('easydeposit_supportemail');
-        $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');                
+        $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
+        $data['v2librarylocation'] = $this->config->item('easydeposit_v2librarylocation');
 
         // Display the header, page, and footer
         $this->load->view('admin/header', $data);
@@ -413,11 +414,11 @@ class Admin extends EasyDeposit
         // Set the current username
         $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
 
-        $this->form_validation->set_rules('librarylocation', 'SWORDAPP PHP Library Location', '_clean|callback__checkswordappapi|required');
+        $this->form_validation->set_rules('librarylocation', 'SWORD PHP Library Location', '_clean|callback__checkswordappapi|required');
         if ($this->form_validation->run() == FALSE)
         {
             // Set the page title
-            $data['page_title'] = 'Change the location of the SWORDAPP PHP Library';
+            $data['page_title'] = 'Change the location of the SWORD PHP Library';
 
             // Display the header, page, and footer
             $this->load->view('admin/header', $data);
@@ -428,6 +429,39 @@ class Admin extends EasyDeposit
         {
             // Update the support email
             $updates['string_easydeposit_librarylocation'] = set_value('librarylocation');
+            $this->_updateconfigkeys($updates);
+
+            // Go to the core settings page
+            redirect('/admin/coresettings');
+        }
+    }
+
+    function v2librarylocation()
+    {
+        // Did the user click 'cancel'?
+        if (isset($_POST['cancel']))
+        {
+            redirect('/admin/coresettings');
+        }
+
+        // Set the current username
+        $data['v2librarylocation'] = $this->config->item('easydeposit_v2librarylocation');
+
+        $this->form_validation->set_rules('v2librarylocation', 'SWORD v2 PHP Library Location', '_clean|callback__checkswordappapi|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            // Set the page title
+            $data['page_title'] = 'Change the location of the SWORD v2 PHP Library';
+
+            // Display the header, page, and footer
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/v2librarylocation', $data);
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            // Update the support email
+            $updates['string_easydeposit_v2librarylocation'] = set_value('v2librarylocation');
             $this->_updateconfigkeys($updates);
 
             // Go to the core settings page
@@ -601,7 +635,7 @@ class Admin extends EasyDeposit
     {
         // Check the file exists
         if (!file_exists($apipath . '/swordappclient.php')) {
-            $this->form_validation->set_message('_checkswordappapi', 'SWORDAPP API Library not found at <em>' . $apipath . '</em>');
+            $this->form_validation->set_message('_checkswordappapi', 'SWORD API Library not found at <em>' . $apipath . '</em>');
             return FALSE;
         }
 
