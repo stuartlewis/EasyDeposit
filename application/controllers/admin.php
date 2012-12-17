@@ -363,6 +363,7 @@ class Admin extends EasyDeposit
         $data['supportemail'] = $this->config->item('easydeposit_supportemail');
         $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
         $data['v2librarylocation'] = $this->config->item('easydeposit_v2librarylocation');
+        $data['swordversion'] = $this->config->item('easydeposit_swordversion');
 
         // Display the header, page, and footer
         $this->load->view('admin/header', $data);
@@ -378,7 +379,7 @@ class Admin extends EasyDeposit
             redirect('/admin/coresettings');
         }
 
-        // Set the current username
+        // Set the support email address
         $data['supportemail'] = $this->config->item('easydeposit_supportemail');
 
         $this->form_validation->set_rules('supportemail', 'Support Email', '_clean|required');
@@ -411,7 +412,7 @@ class Admin extends EasyDeposit
             redirect('/admin/coresettings');
         }
 
-        // Set the current username
+        // Set the library location
         $data['librarylocation'] = $this->config->item('easydeposit_librarylocation');
 
         $this->form_validation->set_rules('librarylocation', 'SWORD PHP Library Location', '_clean|callback__checkswordappapi|required');
@@ -427,7 +428,7 @@ class Admin extends EasyDeposit
         }
         else
         {
-            // Update the support email
+            // Update the library location
             $updates['string_easydeposit_librarylocation'] = set_value('librarylocation');
             $this->_updateconfigkeys($updates);
 
@@ -444,7 +445,7 @@ class Admin extends EasyDeposit
             redirect('/admin/coresettings');
         }
 
-        // Set the current username
+        // Set the library location
         $data['v2librarylocation'] = $this->config->item('easydeposit_v2librarylocation');
 
         $this->form_validation->set_rules('v2librarylocation', 'SWORD v2 PHP Library Location', '_clean|callback__checkswordappapi|required');
@@ -460,8 +461,41 @@ class Admin extends EasyDeposit
         }
         else
         {
-            // Update the support email
+            // Update the library location
             $updates['string_easydeposit_v2librarylocation'] = set_value('v2librarylocation');
+            $this->_updateconfigkeys($updates);
+
+            // Go to the core settings page
+            redirect('/admin/coresettings');
+        }
+    }
+
+    function swordversion()
+    {
+        // Did the user click 'cancel'?
+        if (isset($_POST['cancel']))
+        {
+            redirect('/admin/coresettings');
+        }
+
+        // Set the current version
+        $data['swordversion'] = $this->config->item('easydeposit_swordversion');
+
+        $this->form_validation->set_rules('swordversion', 'SWORD version', '_clean|_v1orv2|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            // Set the page title
+            $data['page_title'] = 'Select the version of SWORD';
+
+            // Display the header, page, and footer
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/swordversion', $data);
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            // Update the SWORD version
+            $updates['string_easydeposit_swordversion'] = set_value('swordversion');
             $this->_updateconfigkeys($updates);
 
             // Go to the core settings page
@@ -641,6 +675,17 @@ class Admin extends EasyDeposit
 
         // Must be OK
         return TRUE;
+    }
+
+    function _v1orv2($value)
+    {
+        // Check the value is 1 or 2
+        if (($value == '1') || ($value == '2')) {
+            return TRUE;
+        }
+
+        // Not an acceptable value
+        return FALSE;
     }
 
     function _isdirectory($dir)

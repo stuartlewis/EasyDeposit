@@ -17,6 +17,9 @@ $config['easydeposit_librarylocation'] = 'application/libraries/swordapp-php-lib
 // Location of the SWORD v2 PHP library (this normally doesn't need to be changed)
 $config['easydeposit_v2librarylocation'] = 'application/libraries/swordappv2-php-library';
 
+// Version of sword to use (1 or 2)
+$config['easydeposit_swordversion'] = 1;
+
 // The name of the application (as shown on the welcome page)
 $config['easydeposit_welcome_title'] = "EasyDeposit Client";
 
