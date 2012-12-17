@@ -4,7 +4,7 @@
         ?>
             <div class="error">
                 WARNING: You are using the default EasyDeposit password. For
-                security reasons should change this using the menu option below.
+                security reasons should <a href="./admin/credentials">change this</a> now.
             </div>
         <?php
     }

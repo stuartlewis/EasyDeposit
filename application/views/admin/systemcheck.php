@@ -67,8 +67,8 @@
         ?>
             <div class="error">
                 <img src="<?php echo base_url(); ?>images/cross.png" />
-                You are using the default EasyDeposit password. For security reasons you should change
-                this using the menu option on the administrative home page.
+                You are using the default EasyDeposit password. For security reasons you should
+                <a href="./admin/credentials">change this</a> now.
             </div>
         <?php
     }
