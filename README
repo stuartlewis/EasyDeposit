@@ -29,6 +29,10 @@ TinyMCE:
   - Please read silkicons-licence.txt for terms of use.
   - Please read tinymce-licence.txt for terms of use.
 
+EasyDeposit was written using PhpStorm:
+
+ - http://www.jetbrains.com/phpstorm/
+
 
 SWORD Compatibility
 -------------------
@@ -56,8 +60,9 @@ View documentation, including installation instructions at:
 Changes
 -------
 2.0 (?? ?? 2012)
- - Added support for SWORD v2
- - Upgrade to COdeIgniter 2.1.3
+ - Added support for SWORD v2 (tested with EPrints, for DSpace use SWORD v1,
+   there is no difference in functionality)
+ - Upgrade to CodeIgniter 2.1.3
 
 1.0 (10 February 2010)
  - New administrative interface to edit options and run a system check
