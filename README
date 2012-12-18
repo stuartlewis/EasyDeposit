@@ -1,6 +1,6 @@
 Welcome to the EasyDeposit PHP client!
 --------------------------------------
-Version: 0.1
+Version: 1.0
 
 The EasyDeposit client is a PHP powered configurable SWORD repository deposit
 client. The client can be easily configured to allow you to create a custom
@@ -55,6 +55,9 @@ View documentation, including installation instructions at:
 
 Changes
 -------
+2.0 (?? ?? 2012)
+ - Added support for SWORD v2
+
 1.0 (10 February 2010)
  - New administrative interface to edit options and run a system check
  - Improvements to the installation process to make it easier to install
