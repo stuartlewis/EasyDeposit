@@ -260,10 +260,7 @@ class Admin extends EasyDeposit
             $packagers = array();
 
             // Which SWORD library to load?
-            $library = $this->config->item('easydeposit_librarylocation');
-            if ($this->config->item('easydeposit_swordversion') == '2') {
-                $library = $this->config->item('easydeposit_v2librarylocation');
-            }
+            $library = $this->_getswordlibrary();
 
             if ($handle = opendir($library)) {
                 while (false !== ($file = readdir($handle))) {

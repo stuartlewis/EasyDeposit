@@ -114,6 +114,12 @@ class CrossRefDOILookup extends EasyDeposit
         // No metadata to package - this is done in the crossrefdoimetadata step
     }
 
+
+    public static function _packagemultipart($package)
+    {
+        // No metadata to package - this is done in the crossrefdoimetadata step
+    }
+
     public static function _email($message)
     {
         // No metadata to email - this is done in the crossrefdoimetadata step

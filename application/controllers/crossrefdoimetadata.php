@@ -86,7 +86,7 @@ class CrossRefDOIMetadata extends EasyDeposit
         for ($authorpointer = 1; $authorpointer <= $_SESSION['crossrefdoi-authorcount']; $authorpointer++)
         {
             $package->addCreator($_SESSION['crossrefdoi-author' . $authorpointer]);
-            $citation .= $_SESSION['crossrefdoi-author' . $authorpointer] . ','; 
+            $citation .= $_SESSION['crossrefdoi-author' . $authorpointer] . ',';
         }
         $citation .= ' ' . $_SESSION['crossrefdoi-year'] . '. ';
         $citation .= $_SESSION['crossrefdoi-title'] . '. ';
@@ -97,6 +97,25 @@ class CrossRefDOIMetadata extends EasyDeposit
         $package->setCitation($citation);
         $data[] = array('Type of item', $_SESSION['crossrefdoi-type'], 'metadata', 'true');
         $data[] = array('Has the item been peer reviewed?', $_SESSION['crossrefdoi-peerreviewed'], 'metadata', 'true');
+    }
+
+    public static function _packagemultipart($package)
+    {
+        // Use the metadata in making the package
+        $package->addMetadata('title', $_SESSION['crossrefdoi-title']);
+        $citation = '';
+        for ($authorpointer = 1; $authorpointer <= $_SESSION['crossrefdoi-authorcount']; $authorpointer++)
+        {
+            $package->addMetadata('creator', $_SESSION['crossrefdoi-author' . $authorpointer]);
+            $citation .= $_SESSION['crossrefdoi-author' . $authorpointer] . ',';
+        }
+        $citation .= ' ' . $_SESSION['crossrefdoi-year'] . '. ';
+        $citation .= $_SESSION['crossrefdoi-title'] . '. ';
+        $citation .= $_SESSION['crossrefdoi-journaltitle'] . ' ';
+        $citation .= $_SESSION['crossrefdoi-volume'] . ' (';
+        $citation .= $_SESSION['crossrefdoi-issue'] . ')';
+
+        $package->addMetadata('bibliographicCitation', $citation);
     }
 
     public static function _email($message)

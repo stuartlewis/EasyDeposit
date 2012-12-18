@@ -49,6 +49,11 @@ class SelectRepository extends EasyDeposit
         // Nothing to do
     }
 
+    public static function _packagemultipart($package)
+    {
+        // Nothing to do
+    }
+
     public static function _email($message)
     {
         // Nothing to do

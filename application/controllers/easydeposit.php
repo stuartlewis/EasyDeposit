@@ -2,11 +2,6 @@
 
 /**
  * EasyDeposit master Application Controller Class
- *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Libraries
- * @author		Stuart Lewis
  */
 class EasyDeposit extends CI_Controller {
 
@@ -149,7 +144,9 @@ class EasyDeposit extends CI_Controller {
         // Load some more helpers
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-        require_once($this->config->item('easydeposit_librarylocation') . '/swordappclient.php');
+
+        // Load the correct SWORD library (v1 or v2)
+        require_once($this->_getswordlibrary() . '/swordappclient.php');
     }
 
     function index()
@@ -296,4 +293,12 @@ class EasyDeposit extends CI_Controller {
         }
     }
 
+    function _getswordlibrary() {
+        $location = $this->config->item('easydeposit_librarylocation');
+        if ($this->config->item('easydeposit_swordversion') == '2') {
+            $location = $this->config->item('easydeposit_v2librarylocation');
+        }
+
+        return $location;
+    }
 }

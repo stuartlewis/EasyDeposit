@@ -116,7 +116,16 @@ class UploadFiles extends EasyDeposit
         for ($i = 1; $i <= $_SESSION['uploadfiles_filecounter']; $i++)
         {
             $package->addFile($_SESSION['uploadfiles_filename' . $i],
-                              $_SESSION['uploadfiles_mime' . $i]);
+                $_SESSION['uploadfiles_mime' . $i]);
+        }
+    }
+
+    public static function _packagemultipart($package)
+    {
+        // Add each of the files to the package
+        for ($i = 1; $i <= $_SESSION['uploadfiles_filecounter']; $i++)
+        {
+            $package->addFile($_SESSION['uploadfiles_filename' . $i]);
         }
     }
 

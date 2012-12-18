@@ -123,6 +123,33 @@ class Metadata extends EasyDeposit
         }
     }
 
+    public static function _packagemultipart($package)
+    {
+        // Use the metadata in making the package
+        $package->addMetadata('title', $_SESSION['metadata-title']);
+        $package->addMetadata('creator', $_SESSION['metadata-author1']);
+        if (!empty($_SESSION['metadata-author2']))
+        {
+            $package->addMetadata('creator', $_SESSION['metadata-author2']);
+        }
+        if (!empty($_SESSION['metadata-author3']))
+        {
+            $package->addMetadata('creator', $_SESSION['metadata-author3']);
+        }
+        if (!empty($_SESSION['metadata-abstract']))
+        {
+            $package->addMetadata('abstract', $_SESSION['metadata-abstract']);
+        }
+        if (!empty($_SESSION['metadata-citation']))
+        {
+            $package->addMetadata('bibliographicCitation', $_SESSION['metadata-citation']);
+        }
+        if (!empty($_SESSION['metadata-link']))
+        {
+            $package->addMetadata('identifier', $_SESSION['metadata-link']);
+        }
+    }
+
     public static function _email($message)
     {
         // Add the details
