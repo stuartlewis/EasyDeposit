@@ -36,7 +36,11 @@ EasyDeposit was written using PhpStorm:
 
 SWORD Compatibility
 -------------------
-This version of the library is compatible with SWORD version 1.3
+This version of the library is compatible with SWORD version 1.3,
+with draft support for SWORD v2.  However, since EasyDeposit is
+a 'fre and forget' tool for single deposits (it does not support
+additional future interactions with the deposits), SWORD v1
+offers the same functionality.
 
 
 Prerequisites
