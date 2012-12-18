@@ -253,20 +253,31 @@ class Admin extends EasyDeposit
                 $configoptions[str_replace('easydeposit_' . $step . '_', '', $key)] = $value;
             }
         }
-        $data['configoptions'] = $configoptions;
 
         // Some steps want extra information:
         //  - Available packagers
-        $packagers = array();
-        if ($handle = opendir($this->config->item('easydeposit_librarylocation'))) {
-            while (false !== ($file = readdir($handle))) {
-                if (strpos($file, 'packager_') === 0) {
-                    array_push($packagers, substr($file, 0, strlen($file) - 4));
-                }
+        if ($step == 'deposit') {
+            $packagers = array();
+
+            // Which SWORD library to load?
+            $library = $this->config->item('easydeposit_librarylocation');
+            if ($this->config->item('easydeposit_swordversion') == '2') {
+                $library = $this->config->item('easydeposit_v2librarylocation');
             }
-            closedir($handle);
+
+            if ($handle = opendir($library)) {
+                while (false !== ($file = readdir($handle))) {
+                    if (strpos($file, 'packager_') === 0) {
+                        array_push($packagers, substr($file, 0, strlen($file) - 4));
+                    }
+                }
+                closedir($handle);
+            }
+            $configoptions['packagers'] = $packagers;
         }
-        $data['packagers'] = $packagers;
+
+        // Store the config options
+        $data['configoptions'] = $configoptions;
 
         // Set the page title
         $data['page_title'] = 'Edit step settings (' . $step . ')';

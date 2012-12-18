@@ -69,6 +69,9 @@ $config['easydeposit_uploadfiles_savedir'] = 'private/uploadfiles/';
 $config['easydeposit_deposit_packages'] = 'private/uploadfiles/';
 $config['easydeposit_multipledeposit_packages'] = "private/uploadfiles/";
 
+// The packager to use
+$config['easydeposit_deposit_packager'] = 'packager_mets_swap';
+
 // Hard code depositurl, login and password if using the depositcredentials step
 $config['easydeposit_depositcredentials_depositurl'] = 'http://localhost/sword/deposit/123456789/2';
 $config['easydeposit_depositcredentials_username'] = 'email@example.com';

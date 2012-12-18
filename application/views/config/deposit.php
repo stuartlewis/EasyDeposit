@@ -45,7 +45,7 @@
         <label for="packager">Packager:</label>
         <select id="packager" name="packager" />
             <?php
-                foreach ($packagers as $packager) { ?>
+                foreach ($configoptions['packagers'] as $packager) { ?>
                     <option<?php if ($configoptions['packager'] == $packager) echo ' selected="selected"' ?>><?php echo $packager; ?></option>
                 <?php }
             ?>
