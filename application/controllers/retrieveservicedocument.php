@@ -54,6 +54,14 @@ class RetrieveServiceDocument extends EasyDeposit
     }
 
     /**
+     * Nothing to add to the package
+     */
+    public static function _packagemultipart($package)
+    {
+        // Nothing to do
+    }
+
+    /**
      * Nothing to add to the email
      */
     public static function _email($message)

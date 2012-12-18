@@ -114,6 +114,11 @@ class SSOLogin extends EasyDeposit
         $package->addCreator($_SESSION['user-surname'] . ', ' . $_SESSION['user-firstname']);
     }
 
+    public static function _packagemultipart($package)
+    {
+        // Do nothing
+    }
+
     /**
      * Greet the user in any emails by their name from SSO.
      */

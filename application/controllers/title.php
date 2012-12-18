@@ -50,6 +50,11 @@ class Title extends EasyDeposit
         $package->setTitle($_SESSION['metadata-title']);
     }
 
+    public static function _packagemultipart($package)
+    {
+        $package->addMetadata('title', $_SESSION['metadata-title']);
+    }
+
     public static function _email($message)
     {
         // Add the URL

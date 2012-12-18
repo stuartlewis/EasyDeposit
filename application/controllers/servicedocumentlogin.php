@@ -101,6 +101,14 @@ class ServiceDocumentLogin extends EasyDeposit
     }
 
     /**
+     * Since the userid is random, nothing to do with it.
+     */
+    public static function _packagemultipart($package)
+    {
+        // Nothing to do
+    }
+
+    /**
      * Since the userid is random, nothing to email about it. 
      */
     public static function _email($message)
