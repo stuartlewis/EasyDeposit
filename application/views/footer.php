@@ -1,7 +1,5 @@
                     </div> <!-- /well -->
 
-                </div> <!-- /leaderboard -->
-
             </div><!-- /container -->
 
             <div id="footer">

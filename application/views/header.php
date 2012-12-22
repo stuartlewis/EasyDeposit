@@ -45,7 +45,7 @@
     </div>
 
     <div class="container">
-        <div class="leaderboard">
+
         <h1><?php echo $page_title; ?></h1>
 
         <div class="well">
