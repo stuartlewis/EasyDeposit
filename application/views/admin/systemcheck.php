@@ -3,7 +3,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Unable to write to config file. Please ensure the web server can write to<br />
                 <em>application/config/easydeposit.php</em> before proceeding.
             </div>
@@ -13,7 +13,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Able to write to config file. The web server can write to<br />
                 <em>application/config/easydeposit.php</em>
             </div>
@@ -24,7 +24,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Unable to write to the file upload directory. Please ensure the web server can write to<br />
                 <em><?php echo $uploadlocation; ?></em> before proceeding.
             </div>
@@ -34,7 +34,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Able to write to the file upload directory. The web server can write to<br />
                 <em><?php echo $uploadlocation; ?></em>
             </div>
@@ -45,7 +45,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Unable to write to the package creation directory. Please ensure the web server can write to<br />
                 <em><?php echo $packagelocation; ?></em> before proceeding.
             </div>
@@ -55,7 +55,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Able to write to the package creation directory. The web server can write to<br />
                 <em><?php echo $packagelocation; ?></em>
             </div>
@@ -66,7 +66,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 You are using the default EasyDeposit password. For security reasons you should
                 <a href="./admin/credentials">change this</a> now.
             </div>
@@ -76,7 +76,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 You are not using the default password.
             </div>
         <?php
@@ -86,7 +86,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Your system does not have the PHP Curl functionality installed.
                 Contact your system administrator about this. Without the PHP Curl
                 functionality installed you will not be able to deposit SWORD packages.
@@ -97,7 +97,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Your system has the PHP Curl functionality installed.
             </div>
         <?php
@@ -107,7 +107,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Your system does not have the PHP SimpleXML functionality installed.
                 Contact your system administrator about this. Without the PHP SimpleXML
                 functionality installed you will not be able to parse SWORD responses.
@@ -118,7 +118,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Your system has the PHP SimpleXML functionality installed.
             </div>
         <?php
@@ -128,7 +128,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Your system does not have the PHP Zip functionality installed.
                 Contact your system administrator about this. Without the PHP Zip
                 functionality installed you will not be able to create SWORD deposit
@@ -140,7 +140,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Your system has the PHP Zip functionality installed.
             </div>
         <?php
@@ -150,7 +150,7 @@
     {
         ?>
             <div class="error">
-                <img src="<?php echo base_url(); ?>images/cross.png" />
+                <img src="<?php echo base_url(); ?>img/cross.png" />
                 Your system does not have the PHP LDAP functionality installed.
                 Contact your system administrator about this.<br />
                 <strong>You only require the LDAP functionality if you are using the
@@ -163,7 +163,7 @@
     {
         ?>
             <div class="positive">
-                <img src="<?php echo base_url(); ?>images/tick.png" />
+                <img src="<?php echo base_url(); ?>img/tick.png" />
                 Your system has the PHP LDAP functionality installed.
             </div>
         <?php
