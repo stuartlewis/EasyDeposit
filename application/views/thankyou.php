@@ -5,9 +5,11 @@
           }
           else
           { ?>
-            An error has occurred with your deposit. Please contact
-            <a href="mailto:<?php echo $supportemail; ?>"><?php echo $supportemail; ?></a>
-            for assistance, quoting reference '<?php echo $id; ?>'.<?php
+            <div class="alert">
+                An error has occurred with your deposit. Please contact
+                <a href="mailto:<?php echo $supportemail; ?>"><?php echo $supportemail; ?></a>
+                for assistance, quoting reference '<?php echo $id; ?>'.
+            </div><?php
           }
     ?>
 </p>

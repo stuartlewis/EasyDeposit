@@ -38,9 +38,10 @@
                 {
                     $counter++;                    
                     ?>
+                        <div class="well">
                         <?php echo form_open('servicedocument'); ?>
                         <li><label>Collection:</label> <?php echo $collection->sac_colltitle; ?>
-                            <input type="Submit" name="submit" id="submit" value="Deposit" />
+                            <input type="Submit" name="submit" id="submit" class="btn-primary" value="Deposit" />
                             <input type="hidden" name="depositurl" value="<?php echo $collection->sac_href; ?>" />
                         <ul>
                         <li class="showmore"><span class="t<?php echo $counter; ?>_toggle">Show more information...</span></li>
@@ -94,7 +95,9 @@
                                     echo form_close();
                                 }
                             ?>
-                    </ul></li><?php
+                    </ul></li>
+                    </div>
+                    <?php
                 }
                 ?></ul></li><?php
             }
