@@ -64,6 +64,7 @@ View documentation, including installation instructions at:
 Changes
 -------
 2.0 (?? ?? 2012)
+ - Upgrade of user interface to Twitter Bootstrap
  - Added support for SWORD v2 (tested with EPrints, for DSpace use SWORD v1,
    there is no difference in functionality)
  - Upgrade to CodeIgniter 2.1.3
