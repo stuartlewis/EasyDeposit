@@ -81,6 +81,12 @@ class EasyDeposit extends CI_Controller {
         }
         session_start();
 
+        // Store an external referrer if there is one
+        if (isset($_GET['referrer']))
+        {
+            $_SESSION['external-referrer'] = $_GET['referrer'];
+        }
+
         // Check the user is logged in, else redirect them to the first step
         if ($this->adminInterface)
         {
@@ -90,7 +96,8 @@ class EasyDeposit extends CI_Controller {
                 redirect('/adminlogin');
             }
         }
-        else if ($this->noChecks) {
+        else if ($this->noChecks)
+        {
             // Do nothing... let the user right though
             // This is used for thr admin interface login page, and any other
             // pages that you do not wish to be protected by the admin password

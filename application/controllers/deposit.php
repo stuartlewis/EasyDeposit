@@ -44,6 +44,8 @@ class Deposit extends EasyDeposit
             $this->_depositatommultipart();
         } else if ($packager == 'packager_atom_multipart_eprints') {
             $this->_depositatommultipart();
+        } else if ($packager == 'packager_atom_twostep') {
+            $this->_depositatomtwostep();
         }
 
         // Go to the next stage
@@ -139,9 +141,9 @@ class Deposit extends EasyDeposit
         try
         {
             $package = new PackagerAtomMultipart($this->config->item('easydeposit_uploadfiles_savedir'),
-                                                 $this->userid,
-                                                 $this->config->item('easydeposit_deposit_packages'),
-                                                 $this->userid . '.multipart');
+                $this->userid,
+                $this->config->item('easydeposit_deposit_packages'),
+                $this->userid . '.multipart');
             foreach ($this->easydeposit_steps as $stepname)
             {
                 if ($stepname == 'deposit')
@@ -173,6 +175,105 @@ class Deposit extends EasyDeposit
                 $error = 'Server returned status code: ' . $response->sac_status . "\n\n";
                 $error .= 'Server provided response: ' . $response->sac_xml;
             }
+        }
+        catch (Exception $e)
+        {
+            // Catch the exception for reporting
+            $error = 'Error: ' . $e->getMessage() . "\n\n";
+            $error .= 'Deposit URL: ' . $_SESSION['depositurl'] . "\n";
+            $error .= 'Deposit username: ' . $_SESSION['sword-username'] . "\n";
+            $error .= 'Package file: ' . $this->config->item('easydeposit_deposit_packages') . $this->userid . '.zip' . "\n";
+
+            if (!empty($response->sac_xml))
+            {
+                $error .= "\n\nResponse:" . $response->sac_xml;
+            }
+
+            $_SESSION['deposited-response'] = $error;
+        }
+
+        // If there was an error, send it to the administrator
+        if (!empty($error))
+        {
+            $to = $this->config->item('easydeposit_supportemail');
+            $subject = 'Error with EasyDeposit system';
+            $headers = 'From: ' . $to . ' <' . $to . ">\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/plain; charset=utf-8\r\n";
+            $headers .= "Content-Transfer-Encoding: quoted-printable\r\n";
+            mail($to, $subject, $error, $headers);
+        }
+    }
+
+    private function _depositatomtwostep()
+    {
+        $response = '';
+        $editmediairi = '';
+        try
+        {
+            $package = new PackagerAtomTwoStep($this->config->item('easydeposit_uploadfiles_savedir'),
+                                               $this->userid,
+                                               $this->config->item('easydeposit_deposit_packages'),
+                                               $this->userid . '.multipart');
+
+            foreach ($this->easydeposit_steps as $stepname)
+            {
+                if ($stepname == 'deposit')
+                {
+                    break;
+                }
+                include_once(APPPATH . 'controllers/' . $stepname . '.php');
+                $stepclass = ucfirst($stepname);
+                call_user_func(array($stepclass, '_packagemultipart'), $package);
+            }
+            $package->create();
+
+            // Deposit the atom entry, leave 'in progress'
+            $sac = new SWORDAPPClient();
+            $response = $sac->depositAtomEntry($_SESSION['depositurl'],
+                                               $_SESSION['sword-username'],
+                                               $_SESSION['sword-password'],
+                                               $_SESSION['sword-obo'],
+                                               $this->config->item('easydeposit_deposit_packages') . $this->userid . '/atom',
+                                               true);
+
+            if (($response->sac_status >= 200) && ($response->sac_status < 300))
+            {
+                $_SESSION['deposited-response'] = $response->sac_xml;
+                $_SESSION['deposited-url'] = (string)$response->sac_id;
+                $editmediairi = $response->sac_edit_media_iri;
+            }
+            else
+            {
+                $error = 'Server returned status code: ' . $response->sac_status . "\n\n";
+                $error .= 'Server provided response: ' . $response->sac_xml;
+            }
+echo '3';
+            // Deposit each file
+            $counter = 0;
+            $inprogress = True;
+            foreach ($package->getFiles() as $file) {
+                echo $counter;
+                $counter++;
+                if ($counter == count($package->getFiles())) {
+                    $inprogress = False;
+                }
+                $response = $sac->addExtraFileToMediaResource($editmediairi,
+                                                              $_SESSION['sword-username'],
+                                                              $_SESSION['sword-password'],
+                                                              $_SESSION['sword-obo'],
+                                                              $this->config->item('easydeposit_deposit_packages') . $this->userid . '/' . $file,
+                                                              $inprogress);
+            }
+
+            $response = $sac->completeIncompleteDeposit($editmediairi,
+                                                        $_SESSION['sword-username'],
+                                                        $_SESSION['sword-password'],
+                                                        $_SESSION['sword-obo']);
+            echo '5';
+            echo $response;
+            die();
+
         }
         catch (Exception $e)
         {
