@@ -10,7 +10,7 @@ easily created, and the look and feel of the client can be easily changed
 by editing the CSS and header and footer files.
 
 EasyDeposit was originally written by Stuart Lewis (stuart@stuartlewis.com) at
-The University of Auckland Library.
+Edinburgh University Library / The University of Auckland Library.
 
 
 Licence
@@ -68,6 +68,7 @@ Changes
  - Added support for SWORD v2 (tested with EPrints, for DSpace use SWORD v1,
    there is no difference in functionality)
  - Upgrade to CodeIgniter 2.1.3
+ - Addition of GitHub deposit step
 
 1.0 (10 February 2010)
  - New administrative interface to edit options and run a system check
