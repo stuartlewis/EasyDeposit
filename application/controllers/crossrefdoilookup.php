@@ -8,7 +8,7 @@ require_once('easydeposit.php');
 
 class CrossRefDOILookup extends EasyDeposit
 {
-    function CrossRefDOILookup()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

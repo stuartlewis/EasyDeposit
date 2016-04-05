@@ -15,7 +15,7 @@ class Nologin extends EasyDeposit
      * userid (a random number generated with mt_rand). If you don't want
      * users to have to login to use the system, make use of this login class.
      */
-    function Nologin()
+    function __construct()
     {
         // State that this is an authentication class
         EasyDeposit::_authN();

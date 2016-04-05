@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class Email extends EasyDeposit
 {
 
-    function Email()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

@@ -8,7 +8,7 @@ require_once('easydeposit.php');
 
 class MultipleThankYou extends EasyDeposit
 {
-    function MultipleThankYou()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

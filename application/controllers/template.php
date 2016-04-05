@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class Template extends EasyDeposit
 {
 
-    function Template()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

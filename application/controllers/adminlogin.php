@@ -4,7 +4,7 @@ require_once('easydeposit.php');
 
 class AdminLogin extends EasyDeposit
 {
-    function AdminLogin()
+    function __construct()
     {
         // State that this is an authentication class
         EasyDeposit::_noChecks();

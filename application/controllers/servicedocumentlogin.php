@@ -18,7 +18,7 @@ class ServiceDocumentLogin extends EasyDeposit
      * You can use this login class to delegate authentication to your
      * repository.
      */
-    function ServiceDocumentLogin()
+    function __construct()
     {
         // State that this is an authentication class
         EasyDeposit::_authN();

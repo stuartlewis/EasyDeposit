@@ -13,7 +13,7 @@ class RetrieveServiceDocument extends EasyDeposit
      * Retrieve a service document from a repository using a pre-configured
      * set of credentials from the easydeposit.php configuration file
      */
-    function RetrieveServiceDocument()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

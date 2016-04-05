@@ -30,7 +30,7 @@ class EasyDeposit extends CI_Controller {
      * Constructor
      *
      */
-    function EasyDeposit()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();
