@@ -8,7 +8,7 @@ require_once('easydeposit.php');
 
 class MultipleDepositCredentials extends EasyDeposit
 {
-     function MultipleDepositCredentials()
+     function __construct()
     {
         // Initalise the parent
         parent::__construct();

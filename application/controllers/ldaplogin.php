@@ -15,7 +15,7 @@ class LDAPLogin extends EasyDeposit
      * LDAP server. The user id is set to be the netid with a random number
      * appended to allow multiple deposits by the same user.
      */
-    function LDAPLogin()
+    function __construct()
     {
         // State that this is an authentication class
         EasyDeposit::_authN();

@@ -4,7 +4,7 @@ require_once('easydeposit.php');
 
 class Admin extends EasyDeposit
 {
-    function Admin()
+    function __construct()
     {
         // State that this is an authentication class
         EasyDeposit::_adminInterface();

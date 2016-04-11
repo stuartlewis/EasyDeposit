@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class UploadFiles extends EasyDeposit
 {
 
-    function UploadFiles()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

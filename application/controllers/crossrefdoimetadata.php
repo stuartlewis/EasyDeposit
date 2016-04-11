@@ -8,7 +8,7 @@ require_once('easydeposit.php');
 
 class CrossRefDOIMetadata extends EasyDeposit
 {
-    function CrossREFDOIMetadata()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

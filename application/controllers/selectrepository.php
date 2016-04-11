@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class SelectRepository extends EasyDeposit
 {
 
-    function SelectRepository()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

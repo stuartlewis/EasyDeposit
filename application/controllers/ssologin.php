@@ -15,7 +15,7 @@ class SSOLogin extends EasyDeposit
      * The user id is set to be the REMOTE_USER with a random number
      * appended to allow multiple deposits by the same user.
      */
-    function SSOLogin()
+    function __construct()
     {
         // State that this is an authentication class
         EasyDeposit::_authN();

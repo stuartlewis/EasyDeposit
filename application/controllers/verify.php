@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class Verify extends EasyDeposit
 {
 
-    function Verify()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

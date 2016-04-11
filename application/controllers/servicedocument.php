@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class ServiceDocument extends EasyDeposit
 {
 
-    function ServiceDocument()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

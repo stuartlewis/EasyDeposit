@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class Metadata extends EasyDeposit
 {
 
-    function Metadata()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();

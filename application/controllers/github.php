@@ -9,7 +9,7 @@ require_once('easydeposit.php');
 class GitHub extends EasyDeposit
 {
 
-    function GitHub()
+    function __construct()
     {
         // Initalise the parent
         parent::__construct();
